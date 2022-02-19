@@ -4,7 +4,8 @@ import '../shared/App.css'
 
 
 const Grid =(props) => {
-    const {is_flex,
+    const {
+        is_flex,
         width,
         margin,
         padding,
@@ -42,6 +43,7 @@ Grid.defaultProps = {
     children: null,
     is_flex: false,
     width: "100%",
+    height: "auto",
     padding: false,
     margin: false,
     bg: false,
@@ -54,6 +56,7 @@ Grid.defaultProps = {
 
 const GridBox = styled.div`
     width: ${(props) => props.width};
+    height: ${(props) => props.height};
     box-sizing: border-box;
     ${(props) => props.height? `height: ${props.height};` : ""}
     ${(props) => props.padding? `padding: ${props.padding};` : ""}
