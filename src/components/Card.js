@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components'
 import { Grid, Text } from "../elements";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -41,8 +41,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -71,8 +71,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -101,8 +101,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -131,8 +131,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -161,8 +161,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -191,8 +191,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -221,8 +221,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -251,8 +251,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -281,8 +281,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -311,8 +311,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -341,8 +341,8 @@ const Card = ()=> {
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
                     <Grid is_flex>
-                        <Text size="16px" bold>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px">₩97,297/박</Text>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
+                        <Text size="16px" width="90px" right>₩97,297/박</Text>
                     </Grid>
                     <Grid is_flex>
                         <Text color="#717171" size="16px">5,282km 거리</Text>
@@ -361,8 +361,7 @@ const CardContents = styled.div`
     box-sizing: border-box;
     cursor: pointer;
     &:hover .swiper-button-prev, 
-    &:hover swiper-button-next,
-    &:hover swiper-pagination {
+    &:hover .swiper-button-next {
         visibility: visible;
     }
 `
@@ -377,11 +376,11 @@ const CardArea = styled.div`
 `
 const StyledSwiper = styled(Swiper)`
     position: relative;
-    .swiper-button-prev, swiper-button-next, swiper-pagination {
+    .swiper-button-prev, .swiper-button-next {
         visibility: hidden;
     }
     .swiper-button-disabled{
-        opacity: 0;
+        opacity: 0 !important;
     }
     .swiper-pagination{
         bottom: 20px;
@@ -409,11 +408,15 @@ const ImgArea = styled.div`
 
 const IconArea = styled.div`
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
     svg{
-        color: #FF385C;
-        height: 1.5em;
+        display: block;
+        fill: rgba(0, 0, 0, 0.5);
+        height: 24px;
+        width: 24px;
+        color: #fff;
     }
 `
 export default Card
