@@ -4,7 +4,7 @@ import '../shared/App.css'
 
 
 const Grid =(props) => {
-    const {is_flex, width, margin, padding, bg, children, center, _font, _onClick} = props;
+    const {is_flex, width, margin, padding, bg, children, center, _font, _onClick, height} = props;
 
     const styles = {
         is_flex: is_flex,
@@ -15,6 +15,7 @@ const Grid =(props) => {
         center: center,
         _font: _font,
         _onClick: _onClick,
+        height: height,
     }
     return (
         <React.Fragment>
@@ -30,6 +31,7 @@ Grid.defaultProps = {
     children: null,
     is_flex: false,
     width: "100%",
+    height: "auto",
     padding: false,
     margin: false,
     bg: false,
@@ -40,7 +42,7 @@ Grid.defaultProps = {
 
 const GridBox = styled.div`
     width: ${(props) => props.width};
-    height: 100%;
+    height: ${(props) => props.height};
     box-sizing: border-box;
     ${(props) => props.padding? `padding: ${props.padding};` : ""}
     ${(props) => props.margin? `margin: ${props.margin};` : ""}
