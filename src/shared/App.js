@@ -7,7 +7,7 @@ import './App.css';
 // import PostList from '../pages/PostList';
 // import Login from '../pages/Login';
 import {Grid} from "../elements";
-// import Header from "../components/Header";
+import Header from "../components/Header";
 // import PostWrite from '../pages/PostWrite';
 // import PostDetail from '../pages/PostDetail';
 
@@ -15,6 +15,7 @@ function App() {
   return (
     <React.Fragment>
       <Grid>
+        <Header/>
         <ConnectedRouter history={history}>
           {/* <Route path="/" exact component={PostList}/> */}
           {/* <Route path="/login" exact component={Login}/> */}
