@@ -4,7 +4,7 @@ import Logo from "../elements/Logo";
 import LoginModal from "./LoginModal";
 import "./Drop.css"
 
-const Header = () => {
+const DetailHeader = () => {
   return (
       <React.Fragment>
       <Wrap>
@@ -126,7 +126,7 @@ const Textbutton = styled.button`
   justify-content: center;
 `;
 
-export default Header;
+export default DetailHeader;
 
 //메뉴 드롭다운 부분
 const DropDown = (props)=>{
