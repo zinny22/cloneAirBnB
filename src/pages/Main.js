@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components'
+import Header from '../components/Header'
 import Card from '../components/Card'
 import { Image, Text } from "../elements";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,31 +12,32 @@ const Main = ()=> {
 
     return(
         <React.Fragment>
-              <Nav>
-                <CategoryArea>
-                  {categoryList.map((a, idx) => {
-                    return (
-                      <CategoryContent style={{borderBottom: idx === clickCategory ? "3px solid rgb(34, 34, 34)" : ""}} key={idx} onClick={()=> {
-                        setClickCategory(idx);
-                      }}>
-                          <Category>
-                            <div className="category_icon" style={{display: idx === clickCategory ? "block" : "none"}}></div>
-                            <p style={{color: idx === clickCategory ? "#000" : "#717171"}} >{a}</p>
-                          </Category>
-                      </CategoryContent>
-                        )
-                      })}
-                </CategoryArea>
-              </Nav>
-            <CardContentsArea>
-                <CardListArea>
-                    <Card></Card>
-                </CardListArea>
-            </CardContentsArea>
-            <MapBtn onClick={()=> window.alert("사용 가능하지 않은 서비스입니다.")}>
-              <span>지도 표시하기</span>
-              <FontAwesomeIcon icon={faMap}/>
-            </MapBtn>
+          <Header></Header>
+          <Nav>
+            <CategoryArea>
+              {categoryList.map((a, idx) => {
+                return (
+                  <CategoryContent style={{borderBottom: idx === clickCategory ? "3px solid rgb(34, 34, 34)" : ""}} key={idx} onClick={()=> {
+                    setClickCategory(idx);
+                  }}>
+                      <Category>
+                        <div className="category_icon" style={{display: idx === clickCategory ? "block" : "none"}}></div>
+                        <p style={{color: idx === clickCategory ? "#000" : "#717171"}} >{a}</p>
+                      </Category>
+                  </CategoryContent>
+                    )
+                  })}
+            </CategoryArea>
+          </Nav>
+          <CardContentsArea>
+              <CardListArea>
+                  <Card></Card>
+              </CardListArea>
+          </CardContentsArea>
+          <MapBtn onClick={()=> window.alert("사용 가능하지 않은 서비스입니다.")}>
+            <span>지도 표시하기</span>
+            <FontAwesomeIcon icon={faMap}/>
+          </MapBtn>
         </React.Fragment>
     )
 }
