@@ -11,6 +11,7 @@ import './App.css';
 // import Login from '../pages/Login';
 import {Grid} from "../elements";
 import Header from "../components/Header";
+import DetailHeader from '../components/DetialHeader';
 // import PostWrite from '../pages/PostWrite';
 // import PostDetail from '../pages/PostDetail';
 import Calendar from "../components/Calendar"
@@ -19,7 +20,7 @@ function App() {
   return (
     <React.Fragment>
       <Grid>
-        <Header/>
+        <DetailHeader/>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main}/>
           {/* <Route path="/login" exact component={Login}/> */}
