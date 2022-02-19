@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
@@ -45,8 +45,7 @@ const ElButton = styled.button`
   box-sizing: border-box;
   border: none;
   ${(props) => (props.margin? `margin: ${props.margin};` : '')}
-  border-radius: 3px;
-  margin: 3px;
+  border-radius: 5px;
   background-color: ${(props) => (props.disabled ? "#999999" : "#50a0b0")};
 `;
 

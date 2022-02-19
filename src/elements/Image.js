@@ -2,10 +2,12 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-    const {shape, src, size} = props;
+    const {shape, src, size, border_radius, margin,} = props;
     const styles = {
         src: src,
         size: size,
+        border_radius: border_radius,
+        margin: margin,
     }
 
     if(shape === "circle"){
@@ -22,18 +24,21 @@ const Image = (props) => {
         )
     }
 
+    if(shape ==="square"){
+
     return(
-        <React.Fragment>
-            <ImageDefailt {...styles}></ImageDefailt>
-        </React.Fragment>
-    )
+        <AspectOutter>
+            <ImageSquare {...styles}></ImageSquare>
+        </AspectOutter>
+        )
+    }   
 }
 
 Image.defaultProps = {
     shape: "circle",
-    src: "https://post-phinf.pstatic.net/MjAyMDAyMjlfMjY4/MDAxNTgyOTU0Nzg3MjQ4.PBMFV4WrSJmeSUJ56c4C7Vkz_SsQlJ1SByKU18kkJh0g.T7mQnadCWVtEZ448AGk_9kG1HFBAzdztXZcBjvSbduwg.JPEG/%EA%B3%A0%EC%96%91%EC%9D%B4_%EB%82%98%EC%9D%B41.jpg?type=w1200",
+    src: "https://a0.muscache.com/im/pictures/19951173-02f9-44ce-8ca5-0772d98293ff.jpg?im_w=720",
     size: 36,
-
+    margin: false,
 };
 
 const ImageDefailt = styled.div`
@@ -46,7 +51,7 @@ const ImageDefailt = styled.div`
 
 const AspectOutter = styled.div`
     width: 100%;
-    min-width: 250px;
+    height: 100%;
 `;
 
 const AspectInner = styled.div`
@@ -55,17 +60,30 @@ const AspectInner = styled.div`
     overflow: hidden;
     background-image: url("${(props) => props.src}");
     background-size: cover;
+    ${(props) => props.border_radius? `border-radius: ${props.border_radius};` : ""}
 `;
 
-
 const ImageCircle = styled.div`
-    --size : ${(props) => props.size}px;
+    --size : ${(props) => props.size};
     width: var(--size);
     height: var(--size);
     border-radius: var(--size);
     background-image: url("${(props) => props.src}");
     background-size: cover;
-    margin: 4px;
+    ${(props) => props.margin? `margin: ${props.margin};` : ""}
+`;
+const ImageSquare = styled.div`
+    --size : ${(props) => props.size};
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    padding-top: 100%;
+    @media screen and (max-width: 743px) { padding-top: 75% } 
+    @media screen and (max-width: 743px) { border-radius: 0px }
+    overflow: hidden;
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    ${(props) => props.border_radius? `border-radius: ${props.border_radius};` : ""}
 `;
 
 export default Image;
