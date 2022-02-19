@@ -131,7 +131,7 @@ const Detail = (props) => {
         
         
         <RightGrid>
-        <MoveCard>하이</MoveCard>
+        <MoveCard>하이루</MoveCard>
         </RightGrid>
         </Grid>
          
