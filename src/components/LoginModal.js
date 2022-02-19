@@ -69,7 +69,7 @@ const Wrap = styled.div`
     flex-direction: column ;
     box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px ;
     border-radius: 12px ;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -105,7 +105,7 @@ const Header= styled.div`
     color: rgb(34, 34, 34) ;
     font-size: 16px ;
     line-height: 20px ;
-    font-weight: 800
+    font-weight: 800;
 `
 
 export default LoginModal;

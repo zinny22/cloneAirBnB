@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import DetailHeader from "../components/DetialHeader";
 import {Grid , Text, Image, Button} from "../elements"
 import Calendar from "../components/Calendar"
 
 const Detail = (props) => {
     return (
         <React.Fragment>
+            <DetailHeader/>
         <Grid width = "80%" is_detail padding = "0px 15% 0px 15%">
             <Text bold size = "26px">산슨 테라스 "작은 전원주택"</Text>
         </Grid>
