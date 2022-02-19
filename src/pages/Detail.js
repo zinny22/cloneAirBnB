@@ -5,7 +5,6 @@ import {Grid , Text, Image, Button} from "../elements"
 const Detail = (props) => {
     return (
         <React.Fragment>
-        <h1>여긴 헤더랍니다다다다닷니다다다다닷니다다다다닷니다다다다닷니다다다다닷니다다다다닷니다다니다다다다닷니다다다다닷니다다다다닷니다다다다닷니다다다다닷다다다닷</h1>
         <Grid width = "80%" is_detail padding = "0px 15% 0px 15%">
             <Text bold size = "26px">산슨 테라스 "작은 전원주택"</Text>
         </Grid>
