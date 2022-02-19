@@ -2,23 +2,26 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import {Text} from "../elements"
 
-const LoginModal = ({setIsM}) => {
-return(
+const SignModal = ({setIsSignup}) => {
+    const[v, setV] = useState(true);
+
+  return(
      <React.Fragment>
-         <Black onClick={()=>setIsM(false)}/>
+         <Black onClick={()=>setIsSignup(false)}/>
          <Wrap>
             <Header>
-                <div>
+                <div onClick={()=>{setV(!v)}}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
-                <div>로그인</div>
+                <div>회원가입</div>
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
             <Input placeholder={"email"} padding="0px 30px"></Input>
+            <Input placeholder={"nickname"}></Input>
             <Input placeholder={"password"}></Input>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button>로그인</Button>
+            <Button>회원가입</Button>
             <div style={{    
                 width:" 100%",
                 marginTop: "16px",
@@ -104,4 +107,4 @@ const Header= styled.div`
     font-weight: 800;
 `
 
-export default LoginModal;
+export default SignModal;
