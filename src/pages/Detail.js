@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Grid , Text, Image, Button} from "../elements"
+import Calendar from "../components/Calendar"
 
 const Detail = (props) => {
     return (
@@ -29,7 +30,7 @@ const Detail = (props) => {
             <Text bold size ="22px">
                 user님이 호스팅하는 초소형 주택 
                 <br/>
-                <span style={{fontSize: "14px", fontWeight: "400"}}>
+                <span style={{fontSize: "16px", fontWeight: "400"}}>
                 최대인원 N명 침실 N개 욕실 N개 
                 </span>    
             </Text>
@@ -122,10 +123,14 @@ const Detail = (props) => {
         </Grid>
         <Hr/>
         <Grid padding = "48px 0px 48px 0px">
-        <Text margin = "0px 0px 24px 0px " bold size = "22px">
-            Sakuho,Minamisaku District 에서 7박
+        <Text margin = "0px" bold size = "22px">
+            체크인 날짜를 선택해주세요.  
         </Text>
+        <span style={{padding : "8px 0px 0px 0px", fontSize: "14px", fontWeight: "400"}}>
+                최대인원 N명 침실 N개 욕실 N개 
+        </span> 
         </Grid>
+        <Calendar/>
         </LeftGrid>
         
         
