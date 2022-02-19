@@ -9,28 +9,6 @@ const Header = () => {
       <React.Fragment>
       <Wrap>
         <Logo />
-        <div style={{ position: "relative" }}>
-        <ElTextarea placeholder={"검색 시작하기"} />
-        <svg
-            viewBox="0 0 32 32"
-            style={{
-              display: "block",
-              fill: "#ff385c",
-              width: "15px",
-              stroke: "#ff385c",
-              strokeWidth: "5.33333",
-              textAlign: "right",
-              right: "-170",
-              top: "50%",
-              transform: "translateY(-50%)",
-              position: "absolute"
-            }}>
-            <g fill="none">
-              <path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path>
-            </g>
-          </svg>
-        </div>
-
         <Wrap>
             <Textbutton>호스트 되기</Textbutton>
             <svg
@@ -57,8 +35,9 @@ const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 0 5.5rem;
+  padding: 0px 80px;
   margin: 0;
+  background-color: aliceblue;
   /* background-color: yellow; */
   @media screen and (min-width: 1607px) {
   }
@@ -70,25 +49,6 @@ const Wrap = styled.div`
   }
 `;
 
-const ElTextarea = styled.input`
-  width: 200%;
-  padding: 13px;
-  height: 15px;
-  align-items: center;
-  background-color: #fff;
-  border: 1px solid #dddddd;
-  border-radius: 40px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
-  color: black;
-  display: inline-flex;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
-  :hover{
-      box-shadow: #ddd 0px 4px 5px 0px;
-  }
-`;
-
 const Button = styled.button`
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   border: 1px solid #ddd;
@@ -96,7 +56,6 @@ const Button = styled.button`
   color: #222222;
   cursor: pointer;
   display: inline-block;
-  margin: 0px 50px 0px 0px;
   overflow: visible;
   padding: 5px 5px 5px 12px;
   text-align: inherit;
@@ -124,6 +83,14 @@ const Textbutton = styled.button`
   cursor: pointer;
   text-align: center;
   justify-content: center;
+  @media screen and (min-width: 1607px) {
+  }
+  @media screen and (min-width: 960px) and (max-width: 1607px) {
+  }
+  @media screen and (min-width: 551px) and (max-width: 960px) {
+  }
+  @media screen and (min-width: 0px) and (max-width: 551px) {
+  }
 `;
 
 export default Header;
@@ -177,19 +144,21 @@ const dropdownRef = useRef(null);
               <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
             </svg>
         </Button>
-        <nav
-          ref={dropdownRef}
-          className={`menu ${isActive ? "active" : "inactive"}`}
-        >
-          <ul>
-            <li>
-              <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>로그인</a>
-            </li>
-            <li>
-              <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>회원가입</a>
-            </li>
-          </ul>
-        </nav>
+        <div>
+          <nav
+            ref={dropdownRef}
+            className={`menu ${isActive ? "active" : "inactive"}`}
+          >
+            <ul>
+              <li>
+                <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>로그인</a>
+              </li>
+              <li>
+                <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>회원가입</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
       {IsM && <LoginModal setIsM={setIsM}/>}
     </div>

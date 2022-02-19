@@ -1,11 +1,13 @@
 import React from "react";
 import styled from 'styled-components'
 import Card from '../components/Card'
+import Header from "../components/Header";
 
 const Main = ()=> {
 
     return(
         <React.Fragment>
+          <Header/>
             <CardContentsArea>
                 <CardListArea>
                     <Card></Card>
