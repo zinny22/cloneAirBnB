@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
-import { Grid } from "../elements";
 import styled from "styled-components";
 import Logo from "../elements/Logo";
 import LoginModal from "./LoginModal";
 import "./Drop.css"
-import { FaSearch } from "react-icons/fa";
 import SignModal from "./SignModal";
 import FilterModal from "./FilterModal";
 import ReviewModal from "./ReviewModal";
@@ -108,6 +106,7 @@ export default DetailHeader;
 
 //메뉴 드롭다운 부분
 const DropDown = (props)=>{
+
 const dropdownRef = useRef(null);
   //드롭되어있는지 여부 확인하기 위함
   const [isActive, setIsActive] = useState(false);
@@ -138,6 +137,7 @@ const dropdownRef = useRef(null);
   const onSetIsReview =(active)=>{
     setIsReview(active)
   }
+  
 
   return (
     <div className="container">
@@ -155,7 +155,7 @@ const dropdownRef = useRef(null);
                 overflow: "visible",
                 padding: "0px 10px 0px 0px",
               }}>
-              <g fill="none" fill-rule="nonzero">
+              <g fill="none" fillRule="nonzero">
                 <path d="m2 16h28"></path>
                 <path d="m2 24h28"></path>
                 <path d="m2 8h28"></path>
