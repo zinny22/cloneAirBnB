@@ -25,12 +25,12 @@ const Main = ()=> {
     return(
         <React.Fragment>
           <Header></Header>
-          <Nav className={150 < scrollPosition ? "change_nav" : ""}>
+          <Nav className={110 < scrollPosition ? "change_nav" : ""}>
             <CategoryArea>
               {categoryList.map((a, idx) => {
                 return (
                   <CategoryContent key={idx} onClick={()=> {setClickCategory(idx);}}>
-                      <Category idx={idx} clickCategory={clickCategory} className={100 < scrollPosition ? "change_category" : ""}>
+                      <Category idx={idx} clickCategory={clickCategory} className={110 < scrollPosition ? "change_category" : ""}>
                         <div className="category_icon" style={{display: idx === clickCategory ? "block" : "none"}}></div>
                         <p style={{color: idx === clickCategory ? "#000" : "#717171"}} >{a}</p>
                       </Category>
@@ -63,7 +63,7 @@ const Nav = styled.div`
   box-shadow: 0;
   transition: box-shadow 0.2s;
   &.change_nav {
-    box-shadow: 0px 4px 14px -4px #80808085;
+    box-shadow: 0px 15px 15px -15px #80808085;
   }
 `
 const CategoryArea = styled.div`
@@ -107,7 +107,7 @@ const Category = styled.div`
   }
   &:before {
     content: ""; position: absolute; width: 0%; height: 2.5px; bottom: -6px; left: 50%; transform: translateX(-50%); background-color: rgb(34,34,34); 
-    transition: all 0.3s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
+    transition: all 0.2s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
   }
   &.change_category:before {
     bottom: -16px;
@@ -125,7 +125,7 @@ const Category = styled.div`
 
 const CardContentsArea = styled.div`
   background-color: transparent;
-  margin-top: 30px;
+  margin-top: 25px;
   @media screen and (min-width: 1100px) {
     padding: 0 80px;
     max-width: none;
@@ -140,7 +140,7 @@ const CardContentsArea = styled.div`
 
 const CardListArea = styled.div`
   display: grid;
-  gap: 24px;
+  gap: 25px;
   box-sizing: border-box;
   @media screen and (min-width: 1607px) {
     grid-template-columns: repeat(4, minmax(0px, 1fr));
