@@ -61,14 +61,15 @@ margin: 10px 0px 0px 0px;
 
 const Wrap = styled.div`
     background: rgb(255, 255, 255);
-    width: 600px;
+    width: 60%;
     height: 50%;
     max-width: 100vw ;
+    min-height: auto;
     display: flex ;
     flex-direction: column ;
     box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px ;
     border-radius: 12px ;
-    padding: 20px;
+    padding: 20%;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -84,9 +85,6 @@ const Black= styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   z-index: 1010;
   background-color: rgba(0, 0, 0, 0.65);
 `
