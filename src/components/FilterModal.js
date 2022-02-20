@@ -3,14 +3,12 @@ import styled from "styled-components";
 import {Text} from "../elements"
 
 const FilterModal = ({setIsFilter}) => {
-    const[v, setV] = useState(true);
-
   return(
      <React.Fragment>
          <Black onClick={()=>setIsFilter(false)}/>
          <Wrap>
             <Header>
-                <div onClick={()=>{setV(!v)}}>
+                <div onClick={()=>setIsFilter(false)}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
                 <div>필터 추가하기</div>
