@@ -107,7 +107,7 @@ const Category = styled.div`
   }
   &:before {
     content: ""; position: absolute; width: 0%; height: 2.5px; bottom: -6px; left: 50%; transform: translateX(-50%); background-color: rgb(34,34,34); 
-    transition: all 0.2s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
+    transition: all 0.3s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
   }
   &.change_category:before {
     bottom: -16px;
