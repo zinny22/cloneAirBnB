@@ -8,7 +8,7 @@ return(
          <Black onClick={()=>setIsM(false)}/>
          <Wrap>
             <Header>
-                <div>
+                <div onClick={()=>setIsM(false)}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
                 <div>로그인</div>
@@ -19,17 +19,6 @@ return(
             <Input placeholder={"password"}></Input>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
             <Button>로그인</Button>
-            <div style={{    
-                width:" 100%",
-                marginTop: "16px",
-                marginBottom: "16px",
-                fontWeight: "400", 
-                fontSize:"12px",
-                lineHeight: "16px"}}>
-                    <div style={{
-                        overflow: "hidden",
-                        textAlign: "center"
-                    }}><span>또는</span></div></div>
         </Wrap>
     </React.Fragment>
   )
@@ -85,7 +74,7 @@ const Black= styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1010;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.50);
 `
 
 const Header= styled.div`

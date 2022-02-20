@@ -8,7 +8,8 @@ import { FaSearch } from "react-icons/fa";
 
 const DetailHeader = () => {
   return (
-      <React.Fragment>
+      <React.Fragment >
+        <div style={{borderBottom: "1px solid rgb(235, 235, 235)"}}>
       <Wrap>
           <div style={{
               display: "flex",
@@ -76,6 +77,7 @@ const DetailHeader = () => {
             <DropDown/>
         </div>
       </Wrap>
+      </div>
       </React.Fragment>
   );
 };
@@ -88,6 +90,7 @@ const Wrap = styled.div`
   align-items: center;
   margin: auto;
   padding: 0px 15px;
+  /* border-bottom: 1px solid rgb(235, 235, 235); */
   @media screen and (min-width: 1607px) {
   }
   @media screen and (min-width: 960px) and (max-width: 1607px) {
