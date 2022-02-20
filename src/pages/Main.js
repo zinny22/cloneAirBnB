@@ -2,25 +2,31 @@ import React, { useState } from "react";
 import styled from 'styled-components'
 import Header from '../components/Header'
 import Card from '../components/Card'
-import { Image, Text } from "../elements";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { actionCreators as postActions } from "../redux/modules/post"
+import { useDispatch, useSelector } from "react-redux"
 
 const Main = ()=> {
     const [scrollPosition, setScrollPosition] = useState(0);
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }
-    React.useEffect(()=>{
-        window.addEventListener('scroll', updateScroll);
-
-        return () => {
-          window.removeEventListener("scroll", updateScroll);
-        };
-    },[]);
     
     const categoryList = ['초소형 주택', '해변 근처', '멋진 수영장', '농장', '통나무집']
     const [clickCategory, setClickCategory] = useState(0);
+
+    React.useEffect(()=>{
+      dispatch(postActions.getPostDB('초소형 주택'))
+      window.addEventListener('scroll', updateScroll);
+
+      return () => {
+        window.removeEventListener("scroll", updateScroll);
+      };
+    },[]);
+
+    const dispatch = useDispatch()
+    let post_list = useSelector((state) => state.post.list.homes)
 
     return(
         <React.Fragment>
@@ -29,7 +35,7 @@ const Main = ()=> {
             <CategoryArea>
               {categoryList.map((a, idx) => {
                 return (
-                  <CategoryContent key={idx} onClick={()=> {setClickCategory(idx);}}>
+                  <CategoryContent key={idx} onClick={()=> {setClickCategory(idx); dispatch(postActions.getPostDB(a));}}>
                       <Category idx={idx} clickCategory={clickCategory} className={110 < scrollPosition ? "change_category" : ""}>
                         <div className="category_icon" style={{display: idx === clickCategory ? "block" : "none"}}></div>
                         <p style={{color: idx === clickCategory ? "#000" : "#717171"}} >{a}</p>
@@ -38,10 +44,23 @@ const Main = ()=> {
                     )
                   })}
             </CategoryArea>
+            <FilterArea>
+              <FilterBtn>언제든</FilterBtn>
+              <FilterBtn>인원</FilterBtn>
+              <FilterBtn>필터</FilterBtn>
+            </FilterArea>
           </Nav>
           <CardContentsArea>
               <CardListArea>
-                  <Card></Card>
+                { post_list &&
+                  post_list.map((info, idx) => {
+                    return (
+                      <React.Fragment key={idx}>
+                        <Card info={info} />
+                      </React.Fragment>
+                    )
+                  })
+                }
               </CardListArea>
           </CardContentsArea>
           <MapBtn onClick={()=> window.alert("사용 가능하지 않은 서비스입니다.")}>
@@ -65,6 +84,7 @@ const Nav = styled.div`
   &.change_nav {
     box-shadow: 0px 15px 15px -15px #80808085;
   }
+  display: flex;
 `
 const CategoryArea = styled.div`
   -webkit-box-align: center !important;
@@ -88,6 +108,24 @@ const CategoryContent = styled.div`
   } 
   &:nth-child(5) .category_icon{
     background: url(https://a0.muscache.com/pictures/ddab88e4-da9d-4e7c-8af8-165507476572.jpg) no-repeat center; background-size: cover;
+  }
+`
+
+const FilterArea = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FilterBtn = styled.button`
+  height: 40px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 10px 16px;
+  cursor: pointer;
+  min-width: 74px;
+  color: rgb(34, 34, 34);
+  &:not(:first-child){
+    margin-left: 8px;
   }
 `
 

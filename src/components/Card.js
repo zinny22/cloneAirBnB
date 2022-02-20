@@ -8,8 +8,9 @@ import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, {Navigation, Pagination} from "swiper";
+import {history} from "../redux/configureStore";
 
-const Card = ()=> {
+const Card = (props)=> {
     const [swiper, setSwiper] = useState(null);
     SwiperCore.use([Navigation, Pagination]);
     const swiperOption = {
@@ -18,335 +19,31 @@ const Card = ()=> {
         onSwiper: setSwiper,
     }
 
+    const { info } = props
+    console.log(info)
     return(
         <React.Fragment>
             <CardContents>
                 <CardArea>
                     <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
+                        {
+                            info.image_url.map((a, i) => {
+                                return(
+                                    <SwiperSlide>
+                                        <ImgArea image_url={a} onClick={()=> {history.push(`/detail/${info._id}`);}}></ImgArea>
+                                    </SwiperSlide>
+                                )
+                            })
+                        }
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
                     </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
+                    <Grid is_flex onClick={()=> {history.push(`/detail/${info._id}`);}}>
+                        <Text size="16px" width="calc(100% - 95px)" bold flow>{info.address}</Text>
+                        <Text size="16px" width="90px" right>₩{info.price}/박</Text>
                     </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
-                    </Grid>
-                </CardArea>
-            </CardContents>
-            <CardContents>
-                <CardArea>
-                    <StyledSwiper {...swiperOption} ref={setSwiper}>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ImgArea image_url="https://economist.co.kr/data/photo/202109/30/0e92a991-d42f-4309-9004-3161e4d064fc.jpg"></ImgArea>
-                        </SwiperSlide>
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
-                    </StyledSwiper>
-                    <Grid is_flex>
-                        <Text size="16px" width="calc(100% - 95px)" bold flow>Kecamatan Mengwi, 발리</Text>
-                        <Text size="16px" width="90px" right>₩97,297/박</Text>
-                    </Grid>
-                    <Grid is_flex>
-                        <Text color="#717171" size="16px">5,282km 거리</Text>
-                        <Text color="#717171" size="16px">3월 4일~11일</Text>
+                    <Grid is_flex onClick={()=> {history.push(`/detail/${info._id}`);}}>
+                        <Text color="#717171" size="16px">{info.distance}km 거리</Text>
+                        <Text color="#717171" size="16px">{info.availableDate}</Text>
                     </Grid>
                 </CardArea>
             </CardContents>
