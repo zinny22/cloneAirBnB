@@ -63,7 +63,7 @@ const Nav = styled.div`
   box-shadow: 0;
   transition: box-shadow 0.2s;
   &.change_nav {
-  box-shadow: 0 0 15px #80808085;
+    box-shadow: 0px 4px 14px -4px #80808085;
   }
 `
 const CategoryArea = styled.div`
@@ -107,7 +107,7 @@ const Category = styled.div`
   }
   &:before {
     content: ""; position: absolute; width: 0%; height: 2.5px; bottom: -6px; left: 50%; transform: translateX(-50%); background-color: rgb(34,34,34); 
-    transition: all 0.2s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
+    transition: all 0.3s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
   }
   &.change_category:before {
     bottom: -16px;
