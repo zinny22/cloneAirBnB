@@ -7,20 +7,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
 
 const Main = ()=> {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    React.useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);
+
+        return () => {
+          window.removeEventListener("scroll", updateScroll);
+        };
+    },[]);
+    
     const categoryList = ['초소형 주택', '해변 근처', '멋진 수영장', '농장', '통나무집']
     const [clickCategory, setClickCategory] = useState(0);
 
     return(
         <React.Fragment>
           <Header></Header>
-          <Nav>
+          <Nav className={150 < scrollPosition ? "change_nav" : ""}>
             <CategoryArea>
               {categoryList.map((a, idx) => {
                 return (
-                  <CategoryContent style={{borderBottom: idx === clickCategory ? "3px solid rgb(34, 34, 34)" : ""}} key={idx} onClick={()=> {
-                    setClickCategory(idx);
-                  }}>
-                      <Category>
+                  <CategoryContent key={idx} onClick={()=> {setClickCategory(idx);}}>
+                      <Category idx={idx} clickCategory={clickCategory} className={100 < scrollPosition ? "change_category" : ""}>
                         <div className="category_icon" style={{display: idx === clickCategory ? "block" : "none"}}></div>
                         <p style={{color: idx === clickCategory ? "#000" : "#717171"}} >{a}</p>
                       </Category>
@@ -48,8 +58,13 @@ const Nav = styled.div`
   top: 0;
   z-index: 5;
   background-color: #fff;
-  padding: 15px 80px 0px 80px;
+  padding: 12px 80px 10px;
   box-sizing: border-box;
+  box-shadow: 0;
+  transition: box-shadow 0.2s;
+  &.change_nav {
+  box-shadow: 0 0 15px #80808085;
+  }
 `
 const CategoryArea = styled.div`
   -webkit-box-align: center !important;
@@ -74,21 +89,28 @@ const CategoryContent = styled.div`
   &:nth-child(5) .category_icon{
     background: url(https://a0.muscache.com/pictures/ddab88e4-da9d-4e7c-8af8-165507476572.jpg) no-repeat center; background-size: cover;
   }
-  transition: -ms-transform 100ms ease-out 0s, -webkit-transform 100ms ease-out 0s, transform 100ms ease-out 0s !important;
 `
 
 const Category = styled.div`
-  margin: 6px 6px 6px 0;
-  padding: 10px;
+  margin: 6px 0;
+  padding: 12px 15px;
   border-radius: 8px;
   background: transparent;
   cursor: pointer;
-  transition: box-shadow 0.2s ease, -ms-transform 0.1s ease, -webkit-transform 0.1s ease, transform 0.1s ease;
+  position: relative;
+  ${(props)=> props.idx === props.clickCategory ? `pointer-events: none;` : ""}
   &:hover {
     background: #F7F7F7;
   }
   &:after {
     content: ""; display: block; visibility: hidden; clear: both;
+  }
+  &:before {
+    content: ""; position: absolute; width: 0%; height: 2.5px; bottom: -6px; left: 50%; transform: translateX(-50%); background-color: rgb(34,34,34); 
+    transition: all 0.2s ease-in-out; ${(props)=> props.idx === props.clickCategory ? `width: 80%;` : ""}
+  }
+  &.change_category:before {
+    bottom: -16px;
   }
   p {
     margin: 0; line-height: 18px; font-weight: 600; float: right; font-size: 14px;
@@ -104,11 +126,13 @@ const Category = styled.div`
 const CardContentsArea = styled.div`
   background-color: transparent;
   margin-top: 30px;
-  @media (min-width: 1128px) {
-    margin: 30px auto 0;
-    position: relative;
-    padding-left: 80px;
-    padding-right: 80px;
+  @media screen and (min-width: 1100px) {
+    padding: 0 80px;
+    max-width: none;
+    margin-bottom: 50px;
+  }
+  @media screen and (min-width: 0px) and (max-width: 1100px) {
+    padding: 0 25px;
     max-width: none;
     margin-bottom: 50px;
   }
@@ -119,11 +143,11 @@ const CardListArea = styled.div`
   gap: 24px;
   box-sizing: border-box;
   @media screen and (min-width: 1607px) {
-    grid-template-columns: repeat(5, minmax(0px, 1fr));
+    grid-template-columns: repeat(4, minmax(0px, 1fr));
   }
   @media screen and (min-width: 960px) and (max-width: 1607px) {
     row-gap: 32px;
-    grid-template-columns: repeat(4, minmax(0px, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0px, 1fr)) !important;
   }
   @media screen and (min-width: 551px) and (max-width: 960px) {
     grid-template-columns: repeat(2, minmax(0px, 1fr));

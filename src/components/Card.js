@@ -372,12 +372,42 @@ const CardArea = styled.div`
     position: relative;
     p{
         margin: 0;
+        @media only screen and (max-width: 500px){
+            min-width: auto;
+        }
     }
 `
 const StyledSwiper = styled(Swiper)`
     position: relative;
     .swiper-button-prev, .swiper-button-next {
         visibility: hidden;
+        width: auto;
+        height: auto;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after{
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        color: rgb(34, 34, 34) !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 11px !important;
+        width: 32px !important;
+        line-height: 32px !important;
+        text-align: center !important;
+        border-radius: 50% !important;
+        font-weight: 600;
+        transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+    }
+    .swiper-button-next:after {
+        text-indent: 2px;
+    }
+    .swiper-button-prev:after {
+        text-indent: -2px;
+    }
+    .swiper-button-next:hover:after, .swiper-button-prev:hover:after {
+        border-color: rgba(0, 0, 0, 0.08) !important;
+        background-color: rgb(255, 255, 255) !important;
+        color: rgb(0, 0, 0) !important;
+        box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgb(0 0 0 / 12%) 0px 6px 16px !important;
+        transform: scale(1.04) !important;
     }
     .swiper-button-disabled{
         opacity: 0 !important;
