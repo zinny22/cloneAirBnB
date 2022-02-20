@@ -164,13 +164,13 @@ const Category = styled.div`
 const CardContentsArea = styled.div`
   background-color: transparent;
   margin-top: 25px;
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 1128px) {
     padding: 0 80px;
     max-width: none;
     margin-bottom: 50px;
   }
-  @media screen and (min-width: 0px) and (max-width: 1100px) {
-    padding: 0 25px;
+  @media screen and (min-width: 0px) and (max-width: 1128px) {
+    padding: 0 24px;
     max-width: none;
     margin-bottom: 50px;
   }
@@ -180,14 +180,14 @@ const CardListArea = styled.div`
   display: grid;
   gap: 25px;
   box-sizing: border-box;
-  @media screen and (min-width: 1607px) {
+  @media screen and (min-width: 1232px) {
     grid-template-columns: repeat(4, minmax(0px, 1fr));
-  }
-  @media screen and (min-width: 960px) and (max-width: 1607px) {
     row-gap: 32px;
+  }
+  @media screen and (min-width: 878px) and (max-width: 1232px) {
     grid-template-columns: repeat(3, minmax(0px, 1fr)) !important;
   }
-  @media screen and (min-width: 551px) and (max-width: 960px) {
+  @media screen and (min-width: 551px) and (max-width: 878px) {
     grid-template-columns: repeat(2, minmax(0px, 1fr));
   }
   @media screen and (min-width: 0px) and (max-width: 551px) {
