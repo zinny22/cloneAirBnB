@@ -1192,9 +1192,9 @@
   integrity sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==
 
 "@emotion/react@^11.7.1":
-  version "11.8.0"
-  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.8.0.tgz#4a48008efa14d7d3628c48fcf287e4df47817b33"
-  integrity sha512-q3Cz0LyO/GGhtXW/dvrf+vFA3o6OlyNttQqgI1mNvtQ5zzJ9Bb1aWQqm1uXOHXpNYvyMaQZWC7eI1cemaSyVRw==
+  version "11.8.1"
+  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.8.1.tgz#5358b8c78367063881e26423057c030c57ce52eb"
+  integrity sha512-XGaie4nRxmtP1BZYBXqC5JGqMYF2KRKKI7vjqNvQxyRpekVAZhb6QqrElmZCAYXH1L90lAelADSVZC4PFsrJ8Q==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@emotion/babel-plugin" "^11.7.1"
@@ -1222,9 +1222,9 @@
   integrity sha512-u0AX4aSo25sMAygCuQTzS+HsImZFuS8llY8O7b9MDRzbJM0kVJlAz6KNDqcG7pOuQZJmj/8X/rAW+66kMnMW+g==
 
 "@emotion/styled@^11.6.0":
-  version "11.8.0"
-  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.8.0.tgz#49b48dfa158a6cf387dd0537fd325728d5dcea4f"
-  integrity sha512-MqHX7qqJesa9X36u3bBvzaK0HmnyclFewSK4uhHl+8s9TFpRMqpakbeHeSGqWCl7QkMhqvPA7oJijZYRsF7nUA==
+  version "11.8.1"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.8.1.tgz#856f6f63aceef0eb783985fa2322e2bf66d04e17"
+  integrity sha512-OghEVAYBZMpEquHZwuelXcRjRJQOVayvbmNR0zr174NHdmMgrNkLC6TljKC5h9lZLkN5WGrdUcrKlOJ4phhoTQ==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@emotion/babel-plugin" "^11.7.1"
@@ -3453,9 +3453,9 @@ css@^3.0.0:
     source-map-resolve "^0.6.0"
 
 cssdb@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/cssdb/-/cssdb-6.3.1.tgz#d8e521c70b32df082ea5373cdd51ac4dc6b6c151"
-  integrity sha512-Ho3gIkGY4O8S3J54fHu7RP5GHWz85McDhimaXEwf7qV0MSPhLM0jdd61zqs1kkadIVDAvfqoku0kArbWaMYolw==
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/cssdb/-/cssdb-6.4.0.tgz#54899b9042e302be3090b8510ea71fefd08c9e6b"
+  integrity sha512-8NMWrur/ewSNrRNZndbtOTXc2Xb2b+NCTPHj8VErFYvJUlgsMAiBGaFaxG6hjy9zbCjj2ZLwSQrMM+tormO8qA==
 
 cssesc@^3.0.0:
   version "3.0.0"
