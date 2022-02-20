@@ -1,8 +1,53 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {Text} from "../elements"
+import { actionCreators as userActions} from "../redux/modules/user";
 
 const SignModal = ({setIsSignup}) => {
+    const dispatch = useDispatch();
+
+    //이메일 닉네임 패스워드 정규식
+    const idCheck = /^[A-Za-z0-9]{4,16}$/
+    const nickCheck = /[A-Za-z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{4,10}$/
+    const pwdCheck = /^[A-Za-z0-9]{4,16}$/
+
+    //각각 인풋 값
+    const [id, setId] = React.useState("")
+    const [nick, setNick] = React.useState("")
+    const [pwd, setPwd] = React.useState("")
+    const [confirmpwd, setConfirmpwd] = React.useState("")
+    
+
+    const signup =()=>{
+        // console.log(id,nick,pwd,confirmpwd)
+
+        if (id === "" || nick === "" || pwd === "" || confirmpwd === "") {
+            window.alert("입력창을 확인해주세요");
+            return;
+          }
+        if(!idCheck.test(id)){
+            window.alert("아이디 형식이 맞지 않습니다")
+            return;
+        }
+        if(!nickCheck.test(nick)){
+            window.alert("닉네임 형식이 맞지 않습니다")
+            return;
+        }
+        if(!pwdCheck.test(pwd)){
+            window.alert("비밀번호 형식이 맞지 않습니다")
+            return;
+        }
+        if(pwd !== confirmpwd){
+            window.alert("비밀번호를 다시한번 확인해주세요")
+            return;
+        }
+        if(id === pwd){
+            window.alert("아이디와 비밀번호가 똑같습니다")
+        }
+        
+        dispatch(userActions.signUpDB(id,nick,pwd,confirmpwd))
+    }
 return(
      <React.Fragment>
          <Black onClick={()=>setIsSignup(false)}/>
@@ -15,12 +60,12 @@ return(
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"email"} padding="0px 30px"></Input>
-            <Input placeholder={"nickname"}></Input>
-            <Input placeholder={"password"}></Input>
-            <Input placeholder={"password check"}></Input>
+            <Input placeholder={"id는 영문 대,소문자와 숫자를 포함한 3~30자"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
+            <Input placeholder={"nickname은 한글, 영문, 숫자만 가능 4~10자리"} onChange={(e)=>{setNick(e.target.value)}}></Input>
+            <Input placeholder={"password는 영문 대,소문자와 숫자를 포함한 4~30자"} onChange={(e)=>{setPwd(e.target.value)}}></Input>
+            <Input placeholder={"password를 한번 더 확인해주세요"} onChange={(e)=>{setConfirmpwd(e.target.value)}}></Input>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button>회원가입</Button>
+            <Button onClick={()=>{signup(); console.log("로그인완료")}}>회원가입</Button>
         </Wrap>
     </React.Fragment>
   )

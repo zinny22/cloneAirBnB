@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {Text} from "../elements"
+import {actionCreators as userActions} from "../redux/modules/user"
+import { useDispatch } from "react-redux";
 
 const LoginModal = ({setIsM}) => {
+    const dispatch = useDispatch()
+    const [id,setId] = React.useState("")
+    const [pwd, setPwd] = React.useState("")
+
+    const login =()=>{
+        dispatch(userActions.logInDB(id,pwd))
+    }
 return(
      <React.Fragment>
          <Black onClick={()=>setIsM(false)}/>
@@ -15,10 +24,10 @@ return(
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"email"} padding="0px 30px"></Input>
-            <Input placeholder={"password"}></Input>
+            <Input placeholder={"email"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
+            <Input placeholder={"password"} onChange={(e)=>{setPwd(e.target.value)}}></Input>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button>로그인</Button>
+            <Button onClick={login}>로그인</Button>
         </Wrap>
     </React.Fragment>
   )
