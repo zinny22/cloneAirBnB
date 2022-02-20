@@ -12,6 +12,7 @@ import ReviewModal from "./ReviewModal";
 const DetailHeader = () => {
   return (
       <React.Fragment>
+    <div style={{borderBottom: "1px solid rgb(235, 235, 235)"}}>
       <Wrap>
           <Logo />
 
@@ -43,6 +44,7 @@ const DetailHeader = () => {
             <DropDown/>
         </div>
       </Wrap>
+      </div>
       </React.Fragment>
   );
 };
