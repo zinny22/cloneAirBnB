@@ -24,7 +24,7 @@ function App() {
           <Route path="/" exact component={Main}/>
           {/* <Route path="/login" exact component={Login}/> */}
           {/* <Route path="/signup" exact component={Signup}/> */}
-          <Route path="/write" exact component={PostWrite}/>
+          {/* <Route path="/write" exact component={PostWrite}/> */}
           <Route path="/detail/:home_id" exact component={Detail}/>
           <Route path="/write" exact component={Write}/> 
         </ConnectedRouter>
