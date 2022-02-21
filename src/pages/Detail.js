@@ -10,31 +10,45 @@ import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 
 const Detail = (props) => {
-    const id = props.match.params._id;
+    const id = props.match.params.home_id;
     const dispatch = useDispatch()
-    let post_list = useSelector((state) => state.post.list.homes)
-    console.log(post_list ? true : false)
+    let post_detail = useSelector((state) => state.post.detail)
+
 
     React.useEffect(()=>{
 
         dispatch(postActions.getPostDetailDB(id))
-
         return () => {
         };
-      },[]);
-    
+    },[]);
 
-    
     return (
         <React.Fragment>
             <DetailHeader/>
-        <Grid width = "100%" is_detail padding = "0px 15% 0px 15%">
-            <Text bold size = "26px">산슨 테라스 "작은 전원주택"</Text>
-        </Grid>
-        <Grid is_detail padding = "0px 15% 0px 15%">
-            <Text size = "14px">[❤4.910] 후기N개 슈퍼호스트 . [장소이름] [공유하기] [❤저장]</Text>
-        </Grid>
-        <Grid is_detail is_flex padding = "0px 15% 0px 15%">
+        <HomeName>
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-label="자동 번역된 이름: 산슨 테라스 &quot;작은 전원주택&quot;" role="img" focusable="false" style={{padding : "6px", display: "block", height: "24px", width: "24px", fill: "currentcolor"}}><path d="M9 0a1 1 0 0 1 .993.883L10 1v5h5a1 1 0 0 1 .993.883L16 7v8a1 1 0 0 1-.883.993L15 16H7a1 1 0 0 1-.993-.883L6 15v-5H1a1 1 0 0 1-.993-.883L0 9V1A1 1 0 0 1 .883.007L1 0h8zm1.729 7l-1.393.495.233.217.13.132c.125.127.227.245.308.352l.073.103.048.073.045.077H7.308v1.309h1.207l.166.52.09.266.112.29a6.294 6.294 0 0 0 1.109 1.789c-.495.315-1.119.607-1.87.87l-.331.112-.346.108-.445.134L7.72 15l.407-.125.386-.128c1.007-.349 1.836-.752 2.486-1.214.57.405 1.277.764 2.12 1.08l.369.134.386.128.406.125.72-1.153-.445-.134-.26-.08-.345-.115c-.783-.27-1.43-.57-1.94-.895a6.3 6.3 0 0 0 1.068-1.694l.128-.32.114-.33.165-.521h1.208V8.449H11.64l-.093-.231a3.696 3.696 0 0 0-.554-.917l-.126-.149-.14-.152zm1.35 2.758l-.042.133-.076.224-.103.264A4.985 4.985 0 0 1 11 11.76a4.952 4.952 0 0 1-.743-1.127l-.115-.254-.103-.264-.076-.224-.042-.133h2.158zM9 1H1v8h5V7c0-.057.005-.113.014-.167H3.827L3.425 8H2l2.257-6h1.486l1.504 4H9V1zM5 3.411L4.253 5.6h1.502L5 3.411z"></path></svg>
+            <div style={{fontSize: "26px"}}>&nbsp;{post_detail ? post_detail.homes.home_name : ""}</div>
+        </HomeName>
+        <TopRate>
+            <div style={{display: "flex"}}>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "14px", width: "14px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+            {post_detail ? post_detail.homes.rateAvg : ""}
+            {/* 여기 onClick 페이지 이동 -> 후기로  */}
+            &nbsp;·&nbsp;후기
+            {post_detail ? post_detail.homes.comment_count : ""}개
+            &nbsp;·&nbsp;
+            <FontAwesomeIcon style={{color: "red", padding: "3px"}} icon={faMedal}/>
+            <text style={{fontWeight: "500", color: "gray"}}>
+            &nbsp;슈퍼호스트
+            </text>
+            &nbsp;·&nbsp;
+            <text style={{fontWeight: "500", color: "gray"}}>
+            {post_detail ? post_detail.homes.address : ""}
+            </text>
+            </div>
+            <Share>[공유하기][❤저장]</Share>
+        </TopRate>
+        <Grid is_detail is_flex padding = "24px 15% 0px 15%">
                 <BigImage>
                     <Image  border_radius ="10px 0px 0px 10px / 10px 0px 0px 10px" shape = "square" />
                 </BigImage>
@@ -164,60 +178,76 @@ const Detail = (props) => {
         <Hr/>
         </Grid>
         <Grid padding = "48px 0px 48px 0px">
-        <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
             <Icon>
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "8px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>  
+                <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+                4.95. 후기 504개
+                </Text>
             </Icon>
-            4.95. 후기 504개
-        </Text>
         </Grid>
         <Grid padding = "0px 0px 0px 0px">
         <Hr/>
         </Grid>
         <Grid padding = "48px 0px 48px 0px">
-        <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
-            호스팅 지역
-        </Text>
-        여긴 지도입니다
+            <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+                호스팅 지역
+            </Text>
+                여긴 지도입니다
         </Grid>
         <Grid padding = "0px 0px 0px 0px">
         <Hr/>
         </Grid>
         <Grid padding = "48px 0px 48px 0px">
         <Host>
-        <Image background-image = "url(https://a0.muscache.com/im/pictures/user/854c3d72-d48e-4037-bc5b-83162f5765fb.jpg?aki_policy=profile_large)" margin = "0px 24px 0px 0px" size = "64px"/>
-        <Text margin = "0px" bold size = "22px">
-                호스트: Daigo님<br style={{padding:"0px"}}/>
-                <span style={{margin : "0px", padding: "0px", fontSize: "14px", fontWeight: "400"}}>
-                    회원 가입일: 2012년11월
-                </span>
-        </Text>
+            <Image margin = "0px 24px 0px 0px" size = "64px"/>
+                <Text margin = "0px" bold size = "22px">
+                            호스트: Daigo님<br style={{padding:"0px"}}/>
+                        <span style={{margin : "0px", padding: "0px", fontSize: "14px", fontWeight: "400"}}>
+                            회원 가입일: 2012년11월
+                        </span>
+                </Text>
         </Host>
             <Hoogi>
-                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
-                    <Icon2>
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
-                    </Icon2>
-                    &nbsp;후기 1,027개
-                </Text>
-                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
-                    <Icon2>
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px" ,fill: "currentcolor"}}><path d="M16 .798l.555.37C20.398 3.73 24.208 5 28 5h1v12.5C29 25.574 23.21 31 16 31S3 25.574 3 17.5V5h1c3.792 0 7.602-1.27 11.445-3.832L16 .798zm7 9.08l-9.5 9.501-4.5-4.5L6.879 17l6.621 6.621L25.121 12 23 9.879z"></path></svg>
-                    </Icon2>
-                    &nbsp;본인 인증 완료
-                </Text>
-                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
-                    <Icon2>
-                    <FontAwesomeIcon icon={faMedal}/>
-                    </Icon2>
-                    &nbsp;슈퍼호스트
-                </Text>
+                <Icon2>
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+                    &nbsp;후기 1,027개&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </Icon2>
+                <Icon2>
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M16 .798l.555.37C20.398 3.73 24.208 5 28 5h1v12.5C29 25.574 23.21 31 16 31S3 25.574 3 17.5V5h1c3.792 0 7.602-1.27 11.445-3.832L16 .798zm7 9.08l-9.5 9.501-4.5-4.5L6.879 17l6.621 6.621L25.121 12 23 9.879z"></path></svg>
+                    &nbsp;본인 인증 완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </Icon2>
+                <Icon2>
+                    <FontAwesomeIcon style={{color: "red", padding: "3px"}} icon={faMedal}/>
+                    &nbsp;슈퍼 호스트
+                </Icon2>
             </Hoogi>
         </Grid>
         </Grid>
         </React.Fragment>
     )
 }
+
+const HomeName = styled.div`
+    font-weight: 600;
+    font-size : 14px;
+    display: flex;
+    padding : 0px 15% 0px 15%;
+    @media screen and (max-width: 743px) { padding : 3% };
+`
+
+
+const TopRate = styled.div`
+    font-weight: 600;
+    font-size : 14px;
+    display: flex;
+    justify-content: space-between;
+    padding : 0px 15% 0px 15%;
+    @media screen and (max-width: 743px) { padding : 3% };
+`
+
+const Share = styled.div`
+    display: flex;
+`
 
 const BigImage = styled.div`
     width : 100%;
@@ -270,12 +300,12 @@ const DetailText = styled.div`
 `
 
 const Icon = styled.div`
-    color : red;
-    padding : 8px
+    display: flex;
+    padding : 8px;
 `
 const Icon2 = styled.div`
-    color : red;
-    padding : 3px
+    display: flex;
+   
 `
 
 const Host = styled.div`

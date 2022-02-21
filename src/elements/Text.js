@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, center, margin, width, right, flow, padding, is_flex, } = props;
+  const { bold, color, size, children, center, margin, width, right, flow, padding, } = props;
 
-  const styles = { bold: bold, color: color, size: size, center: center, margin: margin, width: width, right: right, flow: flow, padding: padding, is_flex: is_flex,};
+  const styles = { bold: bold, color: color, size: size, center: center, margin: margin, width: width, right: right, flow: flow, padding: padding,};
   
   
   return (
@@ -27,7 +27,6 @@ Text.defaultProps = {
   right: false,
   flow: false,
   padding: false,
-  is_flex: false,
 };
 
 const P = styled.p`
@@ -35,7 +34,6 @@ const P = styled.p`
   ${(props) => props.right ? `text-align: right;` : ""}
   ${(props) => props.flow ? `white-space: nowrap; overflow: hidden; text-overflow: ellipsis;` : ""}
   ${(props) => props.padding? `padding: ${props.padding};` : ""}
-  ${(props) => props.is_flex? `display: flex;` : ""}
   color: ${(props) => props.color};
   margin: ${(props) => props.margin};
   width: ${(props)=> props.width};

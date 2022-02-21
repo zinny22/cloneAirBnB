@@ -6,7 +6,8 @@ const GET_POST = "GET_POST"
 const GET_POSTDETAIL = "GET_POSTDETAIL"
 
 const getPost = createAction(GET_POST, (postList) => ({postList}))
-const getPostDetail = createAction(GET_POST, (postList) => ({postList}))
+//postDetail 은 내가 원하는 명으로 저장 
+const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}))
 
 
 const initialState = {
@@ -26,13 +27,12 @@ const getPostDB = (category) => {
     }
 }
 
-const getPostDetailDB = () => {
+const getPostDetailDB = (home_id) => {
   return function (dispatch, getState, { history }) {
       axios
-        .get(`http://52.79.227.179:3000/api/main/`)
+        .get(`http://54.180.81.174:3000/api/homes/${home_id}`)
         .then((res) => {
           dispatch(getPostDetail(res.data))
-          console.log(getPostDetailDB())
         })
         .catch((err) => {
           console.error(err)
@@ -49,8 +49,9 @@ export default handleActions(
         }),
       [GET_POSTDETAIL]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.postList
-        console.log(draft.list)
+        console.log(action.payload)
+        draft.detail = action.payload.postDetail
+        console.log(draft.detail)
       }),  
     },
     initialState
