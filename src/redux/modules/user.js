@@ -26,11 +26,9 @@ const logInDB = (id, pwd)=>{
             user_pwd : pwd
         })
         .then((response)=>{
-            console.log(response)
             window.alert("로그인이 완료 되었습니다")
             localStorage.setItem("is_login", response.data.token)
             dispatch(setUser())
-            window.location.reload()
         })
         .catch((error)=>{
             console.log(error);
@@ -69,7 +67,8 @@ const logOutDB =()=>{
 export default handleActions(
     {
         [SET_USER]:(state, action) => produce(state, (draft)=>{
-            draft.is_login = true
+            draft.is_login = true;
+            console.log(draft.is_login)
         }),
         [LOG_OUT]:(state, action) => produce (state,(draft)=>{
             localStorage.clear();
