@@ -26,7 +26,8 @@ const Main = ()=> {
     },[]);
 
     const dispatch = useDispatch()
-    let post_list = useSelector((state) => state.post.list.homes)
+    let post_list = useSelector((state) => state.post.list.homes
+    )
 
     return(
         <React.Fragment>

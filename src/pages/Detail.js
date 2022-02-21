@@ -3,12 +3,32 @@ import styled from "styled-components";
 import DetailHeader from "../components/DetialHeader";
 import {Grid , Text, Image, Button} from "../elements"
 import Calendar from "../components/Calendar"
+import { useDispatch, useSelector } from "react-redux"
+import { actionCreators as postActions } from "../redux/modules/post"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
+
 
 const Detail = (props) => {
+    const id = props.match.params._id;
+    const dispatch = useDispatch()
+    let post_list = useSelector((state) => state.post.list.homes)
+    console.log(post_list ? true : false)
+
+    React.useEffect(()=>{
+
+        dispatch(postActions.getPostDetailDB(id))
+
+        return () => {
+        };
+      },[]);
+    
+
+    
     return (
         <React.Fragment>
             <DetailHeader/>
-        <Grid width = "80%" is_detail padding = "0px 15% 0px 15%">
+        <Grid width = "100%" is_detail padding = "0px 15% 0px 15%">
             <Text bold size = "26px">산슨 테라스 "작은 전원주택"</Text>
         </Grid>
         <Grid is_detail padding = "0px 15% 0px 15%">
@@ -135,12 +155,66 @@ const Detail = (props) => {
         <Calendar/>
         </LeftGrid>
         
-        
         <RightGrid>
         <MoveCard>하이루</MoveCard>
         </RightGrid>
         </Grid>
-         
+        <Grid is_detail padding = "0px 15% 0px 15%">
+        <Grid>
+        <Hr/>
+        </Grid>
+        <Grid padding = "48px 0px 48px 0px">
+        <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+            <Icon>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+            </Icon>
+            4.95. 후기 504개
+        </Text>
+        </Grid>
+        <Grid padding = "0px 0px 0px 0px">
+        <Hr/>
+        </Grid>
+        <Grid padding = "48px 0px 48px 0px">
+        <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+            호스팅 지역
+        </Text>
+        여긴 지도입니다
+        </Grid>
+        <Grid padding = "0px 0px 0px 0px">
+        <Hr/>
+        </Grid>
+        <Grid padding = "48px 0px 48px 0px">
+        <Host>
+        <Image background-image = "url(https://a0.muscache.com/im/pictures/user/854c3d72-d48e-4037-bc5b-83162f5765fb.jpg?aki_policy=profile_large)" margin = "0px 24px 0px 0px" size = "64px"/>
+        <Text margin = "0px" bold size = "22px">
+                호스트: Daigo님<br style={{padding:"0px"}}/>
+                <span style={{margin : "0px", padding: "0px", fontSize: "14px", fontWeight: "400"}}>
+                    회원 가입일: 2012년11월
+                </span>
+        </Text>
+        </Host>
+            <Hoogi>
+                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
+                    <Icon2>
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+                    </Icon2>
+                    &nbsp;후기 1,027개
+                </Text>
+                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
+                    <Icon2>
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "16px", width: "16px" ,fill: "currentcolor"}}><path d="M16 .798l.555.37C20.398 3.73 24.208 5 28 5h1v12.5C29 25.574 23.21 31 16 31S3 25.574 3 17.5V5h1c3.792 0 7.602-1.27 11.445-3.832L16 .798zm7 9.08l-9.5 9.501-4.5-4.5L6.879 17l6.621 6.621L25.121 12 23 9.879z"></path></svg>
+                    </Icon2>
+                    &nbsp;본인 인증 완료
+                </Text>
+                <Text is_flex margin = "0px 12px 0px 12px" size = "16px">
+                    <Icon2>
+                    <FontAwesomeIcon icon={faMedal}/>
+                    </Icon2>
+                    &nbsp;슈퍼호스트
+                </Text>
+            </Hoogi>
+        </Grid>
+        </Grid>
         </React.Fragment>
     )
 }
@@ -160,6 +234,7 @@ const SmallImage = styled.div`
 `
 const LeftGrid = styled.div`
     width: 60%;
+    padding-bottom: 48px;
     margin-top : 2%;
 `
 const TextBox = styled.div`
@@ -192,6 +267,24 @@ const DetailText = styled.div`
     overflow: hidden;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
+`
+
+const Icon = styled.div`
+    color : red;
+    padding : 8px
+`
+const Icon2 = styled.div`
+    color : red;
+    padding : 3px
+`
+
+const Host = styled.div`
+    display: flex;
+    margin: 0px 0px 24px 0px;
+`
+
+const Hoogi = styled.div`
+    display: flex;
 `
 
 

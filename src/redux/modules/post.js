@@ -3,8 +3,11 @@ import { produce } from "immer"
 import axios from "axios";
 
 const GET_POST = "GET_POST"
+const GET_POSTDETAIL = "GET_POSTDETAIL"
 
 const getPost = createAction(GET_POST, (postList) => ({postList}))
+const getPostDetail = createAction(GET_POST, (postList) => ({postList}))
+
 
 const initialState = {
     list: [],
@@ -23,13 +26,32 @@ const getPostDB = (category) => {
     }
 }
 
+const getPostDetailDB = () => {
+  return function (dispatch, getState, { history }) {
+      axios
+        .get(`http://52.79.227.179:3000/api/main/`)
+        .then((res) => {
+          dispatch(getPostDetail(res.data))
+          console.log(getPostDetailDB())
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+  }
+}
+
 export default handleActions(
     {
       [GET_POST]: (state, action) =>
         produce(state, (draft) => {
           draft.list = action.payload.postList
           console.log(draft.list)
-        })
+        }),
+      [GET_POSTDETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.postList
+        console.log(draft.list)
+      }),  
     },
     initialState
   )
@@ -37,5 +59,7 @@ export default handleActions(
 const actionCreators = {
     getPost,
     getPostDB,
+    getPostDetail,
+    getPostDetailDB,
   }
   export { actionCreators }

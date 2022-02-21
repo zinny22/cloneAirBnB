@@ -2,12 +2,14 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-    const {shape, src, size, border_radius, margin,} = props;
+    const {shape, src, size, border_radius, margin, is_flex, padding,} = props;
     const styles = {
         src: src,
         size: size,
         border_radius: border_radius,
         margin: margin,
+        is_flex: is_flex,
+        padding: padding,
     }
 
     if(shape === "circle"){
@@ -39,6 +41,8 @@ Image.defaultProps = {
     src: "https://a0.muscache.com/im/pictures/19951173-02f9-44ce-8ca5-0772d98293ff.jpg?im_w=720",
     size: 36,
     margin: false,
+    is_flex: false,
+    padding: false
 };
 
 const ImageDefailt = styled.div`
@@ -71,6 +75,8 @@ const ImageCircle = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover;
     ${(props) => props.margin? `margin: ${props.margin};` : ""}
+    ${(props) => props.padding? `padding: ${props.padding};` : ""}
+    ${(props) => props.is_flex? `display: flex;` : ""}
 `;
 const ImageSquare = styled.div`
     --size : ${(props) => props.size};
