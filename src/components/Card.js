@@ -29,7 +29,7 @@ const Card = (props)=> {
                         {
                             info.image_url.map((a, i) => {
                                 return(
-                                    <SwiperSlide>
+                                    <SwiperSlide key={i}>
                                         <ImgArea image_url={a} onClick={()=> {history.push(`/detail/${info._id}`);}}></ImgArea>
                                     </SwiperSlide>
                                 )
