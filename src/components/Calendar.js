@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import moment from 'moment';
+import moment, { now } from 'moment';
+import styled from "styled-components";
 import { Grid } from "../elements";
+import { Autoplay } from "swiper";
 
-const Calender = () => {
+const Calendar = () => {
     const [getMoment, setMoment] = useState(moment());
     const today = getMoment //today == moment()
     const nextMonth = getMoment.clone().add(1, 'month')
@@ -24,12 +26,18 @@ const Calender = () => {
                              .week(week)
                              .startOf('week')
                              .add(idx, 'day');
+                             if(days.format('MM') !== today.format('MM')){
+                                return(
+                                    <td key={idx} style={{color:'transparent'}} >
+                                      <span>{days.format('D')}</span>
+                                    </td>
+                                )
+                            }
                             return(
                                     <td key ={idx}>
                                         <span>{days.format('D')}</span>
                                     </td>
-                            )
-                            
+                            )                          
                     })}
                 </tr>);
         }
@@ -47,6 +55,13 @@ const Calender = () => {
                              .week(week)
                              .startOf('week')
                              .add(idx, 'day');
+                             if(days.format('MM') !== getMoment.clone().add(1, 'month').format('MM')){
+                                return(
+                                    <td key={idx} style={{color:'transparent'}} >
+                                      <span>{days.format('D')}</span>
+                                    </td>
+                                )
+                            }
                             return(
                                     <td key ={idx}>
                                         <span>{days.format('D')}</span>
@@ -58,32 +73,118 @@ const Calender = () => {
         }
         return result;
     }
-
     return (
         <React.Fragment>
-            <div style={{display: "flex", fontWeight: "600"}}>
-            <div style={{margin : "20px"}}>
-                <button onClick={()=>{setMoment(getMoment.clone().subtract(1, 'month'))}}>이전달</button>
-                <span>{today.format('YYYY 년 MM 월')}</span>
-                    <table style={{padding: "10px"}}>
-                        <tbody>
-                        {calenderArr()}
-                        </tbody>   
-                    </table>
-            </div>
-            <div style={{margin: "20px"}}>
-                <span>{nextMonth.format('YYYY 년 MM 월')}</span>
-                <button onClick={()=>{setMoment(getMoment.clone().add(1, 'month'))}}>다음달</button>
-                    <table style={{padding:"10px"}}>
+            <Wrap>
+                <Left>
+                <LeftMonth>
+                    <span style={{textAlign: "center"}}>
+                    <LeftArrow
+                        onClick={()=>{setMoment(getMoment.clone().subtract(1, 'month'))}}
+                        disabled={getMoment.format('MM') == new Date().getMonth()+1 ? true : false}
+                        >
+                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style={{height: "12px", width: "12px", display: "block", fill: "currentcolor"}}><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd"></path></svg> 
+                    </LeftArrow>
+                    {today.format('YYYY 년 MM 월')}
+                    <br/>
+                    <br/>     
+                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "14.5px"}}>일 월 화 수 목 금 토</text>    
+                    </span>
+                </LeftMonth>
+                    <LeftCalendar>
+                        <Day>
+                            <tbody>
+                            {calenderArr()}
+                            </tbody>   
+                        </Day>
+                    </LeftCalendar>
+                </Left>
+                <Right>
+                <RightMonth>
+                    <span style={{textAlign: "center"}}>
+                    {nextMonth.format('YYYY 년 MM 월')}
+                    <RightArrow 
+                        onClick={()=>{setMoment(getMoment.clone().add(1, 'month'))}}>
+                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style={{height: "12px", width: "12px", display: "block", fill: "currentcolor"}}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
+                    </RightArrow>
+                    <br/>
+                    <br/>
+                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "14.5px"}}>일 월 화 수 목 금 토</text>
+                    </span>      
+                </RightMonth>
+                <RightCalendar>
+                    <Day>
                         <tbody>
                         {calenderArrNextMonth()}
                         </tbody>
-                    </table>
-            </div>
-            </div>
+                    </Day>
+                </RightCalendar>
+                </Right>
+            </Wrap>
         </React.Fragment>
     )
 
 }
 
-export default Calender;
+const Wrap = styled.div`
+    display: flex;
+    font-weight: 500;
+    transition: .35s linear;
+`
+const Right = styled.div`
+    padding-left: 13px;
+    padding-right: 13px;
+`
+const RightMonth = styled.div`
+    display: flex;
+    color: black;
+    justify-content: center;
+`
+const RightCalendar = styled.div`
+`
+const Left = styled.div`
+    padding-right: 13px;
+    padding-left: 13px;
+`
+const LeftMonth = styled.div`
+    display: flex;
+    color: black;
+    justify-content: center;
+
+`
+const LeftCalendar = styled.div`
+    
+`
+const RightArrow = styled.button`
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    color: black;
+    background-color:transparent;
+    border: none;
+    cursor: pointer;
+    justify-content: end;
+    float: right;
+    padding-bottom: 8px;
+    
+
+`
+const LeftArrow = styled.button`
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    color: ${(props) => (props.disabled ? "#cccccc" : "black")};
+    background-color:transparent;
+    border: none;
+    cursor: ${(props) => (props.disabled ? " " : "pointer")};
+    float: left;
+    padding-bottom: 8px;
+
+    
+`
+const Day = styled.table`
+    border-collapse: separate;
+    border-spacing: 1.5rem 1.5rem;
+`
+
+export default Calendar;
