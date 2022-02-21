@@ -24,10 +24,17 @@ return(
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"email"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
-            <Input placeholder={"password"} onChange={(e)=>{setPwd(e.target.value)}}></Input>
+            <Input placeholder={"id"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
+            <input type={"password"} onChange={(e)=>{setPwd(e.target.value)}} style={{
+                padding: "16px",
+                marginBottom: "10px",
+                border:"1px solid gray",
+                borderRadius: "7px",
+                cursor: "pointer",
+                }}
+                placeholder={"password"}/>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button onClick={login}>로그인</Button>
+            <Button onClick={()=>{login(); setIsM(false)}}>로그인</Button>
         </Wrap>
     </React.Fragment>
   )

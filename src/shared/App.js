@@ -14,6 +14,7 @@ import {Grid} from "../elements";
 // import PostWrite from '../pages/PostWrite';
 // import PostDetail from '../pages/PostDetail';
 import Calendar from "../components/Calendar"
+import Write from '../pages/Write';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           {/* <Route path="/signup" exact component={Signup}/> */}
           {/* <Route path="/write" exact component={PostWrite}/> */}
           <Route path="/detail/" exact component={Detail}/>
+          <Route path="/write" exact component={Write}/> 
         </ConnectedRouter>
       </Grid>
     </React.Fragment>
