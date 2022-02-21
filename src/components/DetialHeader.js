@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Grid } from "../elements";
 import styled from "styled-components";
 import Logo from "../elements/Logo";
 import LoginModal from "./LoginModal";
 import "./Drop.css"
 import { FaSearch } from "react-icons/fa";
+import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const DetailHeader = () => {
   return (
@@ -17,7 +19,7 @@ const DetailHeader = () => {
               justifyContent:"space-between",
               width: "60%"
           }}>
-          <Logo />
+          <Logo onClick={()=>{history.pushState('/')}}/>
         <div style={{ 
             // width: "50%",
             position: "relative", 
@@ -168,6 +170,10 @@ export default DetailHeader;
 
 //메뉴 드롭다운 부분
 const DropDown = (props)=>{
+  const dispach = useDispatch()
+  const is_login = useSelector((state) => state.user.is_login);
+  const is_local = localStorage.getItem("is_login")?true:false;
+  React.useEffect(()=>{ },[is_login])
 const dropdownRef = useRef(null);
   //드롭되어있는지 여부 확인하기 위함
   const [isActive, setIsActive] = useState(false);
@@ -179,6 +185,59 @@ const dropdownRef = useRef(null);
   const [IsM, setIsM] = useState(false)
   const onSetIsM =(active)=>{
     setIsM(active)
+  }
+  if(is_local){
+    return (
+      <div className="container">
+        <div className="menu-container">
+          <Button onClick={()=> setIsActive(!isActive)} className="menu-trigger">
+          <svg
+                viewBox="0 0 32 32"
+                style={{
+                  display: "block",
+                  fill: "none",
+                  height: "16px",
+                  width: "16px",
+                  stroke: "#222222",
+                  strokeWidth: "3",
+                  overflow: "visible",
+                  padding: "0px 10px 0px 0px",
+                }}>
+                <g fill="none" fillRule="nonzero">
+                  <path d="m2 16h28"></path>
+                  <path d="m2 24h28"></path>
+                  <path d="m2 8h28"></path>
+                </g>
+              </svg> 
+            <svg
+                viewBox="0 0 32 32"
+                style={{
+                  display: "block",
+                  height: "100%",
+                  width: "100%",
+                  fill: "#222222",
+                }}
+              >
+                <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
+              </svg>
+          </Button>
+          <nav
+            ref={dropdownRef}
+            className={`menu ${isActive ? "active" : "inactive"}`}
+          >
+            <ul>
+              <li>
+                <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>로그인</a>
+              </li>
+              <li>
+                <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>회원가입</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        {IsM && <LoginModal setIsM={setIsM}/>}
+      </div>
+    );
   }
 
   return (
@@ -220,16 +279,17 @@ const dropdownRef = useRef(null);
           className={`menu ${isActive ? "active" : "inactive"}`}
         >
           <ul>
-            <li>
-              <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>로그인</a>
-            </li>
-            <li>
-              <a onClick={()=>{onSetIsM(true); onSetIsVisible(false)}}>회원가입</a>
+          <li>
+              <a onClick={()=>{
+                onSetIsVisible(false);
+                dispach(userActions.logOutDB());
+                window.location.reload('/')
+                }}>
+                  로그아웃</a>
             </li>
           </ul>
         </nav>
       </div>
-      {IsM && <LoginModal setIsM={setIsM}/>}
     </div>
   );
 }

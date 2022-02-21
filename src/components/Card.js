@@ -20,6 +20,7 @@ const Card = (props)=> {
     }
 
     const { info } = props
+
     return(
         <React.Fragment>
             <CardContents>

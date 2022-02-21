@@ -71,7 +71,7 @@ const FilterModal = ({setIsFilter}) => {
                 <Line/>
             </div>
             <div>            
-                <div style={{display:"flex", justifyContent:"space-between"}}> 
+                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}> 
                 <Text>즉시 예약 <br/> 호스트 승인을 기다릴 필요 없이 예약할 수 있는 숙소</Text>
                 <Circle><Circles/></Circle>
                 </div>

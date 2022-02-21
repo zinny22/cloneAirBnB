@@ -1,74 +1,105 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import {Text} from "../elements"
+import person from "../person.png"
 
 const ReviewModal = ({setIsReview}) => {
-    const[v, setV] = useState(true);
-
   return(
      <React.Fragment>
          <Black onClick={()=>setIsReview(false)}/>
          <Wrap>
             <Header>
-                <div onClick={()=>{setV(!v)}}>
+                <div onClick={()=>setIsReview(false)}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
-                <div>리뷰</div>
-                <div></div>
             </Header>
-            <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"email"} padding="0px 30px"></Input>
-            <Input placeholder={"nickname"}></Input>
-            <Input placeholder={"password"}></Input>
-            <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button>회원가입</Button>
-            <div style={{    
-                width:" 100%",
-                marginTop: "16px",
-                marginBottom: "16px",
-                fontWeight: "400", 
-                fontSize:"12px",
-                lineHeight: "16px"}}>
-                    <div style={{
-                        overflow: "hidden",
-                        textAlign: "center"
-                    }}><span>또는</span></div></div>
+            <div style={{position:"sticky", top:"0", backgroundColor:"white"}}>
+                <Text> ⭐️ 4.92. 후기150개 </Text>
+                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", position:"relative"}}>
+                <Input></Input>
+                <Button>작성</Button>
+                </div>
+            </div>
+            <div>
+            <div style={{display:"flex", alignItems:"center", marginTop:"20px"}}>
+                <img src={person} alt="user_image" style={{width:"50px", height:"50px", margin:"0px 20px 0px 0px"}}/>
+                <div>
+                    <p style={{fontSize:"16px", fontWeight:"600", color:"rgb(34,34,34)"}}>hyejin<br/><span style={{fontSize:"10px"}}>17시간전</span></p>
+                </div>
+                <div style={{display:"flex", justifyContent:"space-between", marginLeft:"30px"}}>
+                    <Sbutton>수정</Sbutton>
+                    <Sbutton>삭제</Sbutton>
+                </div>
+            </div>
+            <p>여기 숙소 너무 좋아요~ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+            </div>
+            <div>
+            <div style={{display:"flex", alignItems:"center", marginTop:"20px"}}>
+                <img src={person} alt="user_image" style={{width:"50px", height:"50px", margin:"0px 20px 0px 0px"}}/>
+                <div>
+                    <p style={{fontSize:"16px", fontWeight:"600", color:"rgb(34,34,34)"}}>hyejin<br/><span style={{fontSize:"10px"}}>17시간전</span></p>
+                </div>
+                <div style={{display:"flex", justifyContent:"space-between", marginLeft:"30px"}}>
+                    <Sbutton>수정</Sbutton>
+                    <Sbutton>삭제</Sbutton>
+                </div>
+            </div>
+            <p>여기 숙소 너무 좋아요~ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+            </div>
+
         </Wrap>
     </React.Fragment>
   )
 };
 
-const Input =styled.input`
-padding: 16px;
-margin-bottom: 10px;
-border:1px solid gray;
-border-radius: 7px;
-cursor: pointer;
-:focus{
-    border:none;
-    outline: 1px solid rgb(255, 56, 92);
-} 
+const Text = styled.p`
+font-size: 25px;
+font-weight: 700;
+color: rgb(34,34,34);
 `
 
 const Button =styled.button`
-border-radius: 6px;
+border-radius: 40px;
+border: 1px solid rgb(235,235,235);
+background-color:rgb(235,235,235) ;
+padding:8px;
+color: rgb(34,34,34);
+font-size: 15px;
+position: absolute;
+right: 2px;
+
+`
+const Input = styled.input`
+border-radius: 40px;
+padding: 4px;
+border: 1px solid gray;
+width: 90%;
+font-size: 17px;
+:focus{
+    border:none;
+    outline: 2px solid rgb(34,34,34);
+} 
+`
+
+const Sbutton = styled.button`
+border-radius: 30px;
 border: none;
-background-color:rgb(255, 56, 92) ;
-padding: 16px;
-color: white;
-margin: 10px 0px 0px 0px;
+background-color:rgb(235,235,235);
+color: rgb(34,34,34);
+width: 50px;
+padding: 4px;
+margin-left: 3px;
 `
 
 const Wrap = styled.div`
     background: rgb(255, 255, 255);
-    width: 600px;
-    height: 50%;
-    max-width: 100vw ;
+    width: 100%;
+    height: 90%;
+    max-width: 740px ;
     display: flex ;
     flex-direction: column ;
     box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px ;
     border-radius: 12px ;
-    padding: 20px;
+    padding: 30px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -78,17 +109,21 @@ const Wrap = styled.div`
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 1011;
+    overflow-x : hidden;
+    overflow-y : scroll;
+    padding-top: 0%;
+    margin: auto;
 `
 
 const Black= styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1010;
-  background-color: rgba(0, 0, 0, 0.65);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1010;
+    background-color: rgba(0, 0, 0, 0.50);
 `
 
 const Header= styled.div`
@@ -105,6 +140,13 @@ const Header= styled.div`
     font-size: 16px ;
     line-height: 20px ;
     font-weight: 800;
-`
+    position: relative;
+    position: sticky;
+    position: -webkit-sticky; 
+    z-index: 10;
+    top: 0;
+    background-color: white;
+    padding: 1.2%;
+    `
 
 export default ReviewModal;

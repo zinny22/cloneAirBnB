@@ -62,10 +62,25 @@ return(
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
             <Input placeholder={"id는 영문 대,소문자와 숫자를 포함한 3~30자"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
             <Input placeholder={"nickname은 한글, 영문, 숫자만 가능 4~10자리"} onChange={(e)=>{setNick(e.target.value)}}></Input>
-            <Input placeholder={"password는 영문 대,소문자와 숫자를 포함한 4~30자"} onChange={(e)=>{setPwd(e.target.value)}}></Input>
-            <Input placeholder={"password를 한번 더 확인해주세요"} onChange={(e)=>{setConfirmpwd(e.target.value)}}></Input>
+            <input type={"password"} onChange={(e)=>{setPwd(e.target.value)}} style={{
+                padding: "16px",
+                marginBottom: "10px",
+                border:"1px solid gray",
+                borderRadius: "7px",
+                cursor: "pointer",
+                }}
+                placeholder={"password는 영문 대,소문자와 숫자를 포함한 4~30자"}/>
+            <input type={"password"} onChange={(e)=>{setConfirmpwd(e.target.value)}} style={{
+                padding: "16px",
+                marginBottom: "10px",
+                border:"1px solid gray",
+                borderRadius: "7px",
+                cursor: "pointer",
+                }}
+                onMouseDown ="border=none"
+                placeholder={"password를 한번 더 확인해주세요"}/>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button onClick={()=>{signup(); console.log("로그인완료")}}>회원가입</Button>
+            <Button onClick={()=>{signup(); setIsSignup(false);}}>회원가입</Button>
         </Wrap>
     </React.Fragment>
   )
