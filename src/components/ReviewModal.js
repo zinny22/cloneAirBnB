@@ -1,33 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {Text} from "../elements"
-import {actionCreators as userActions} from "../redux/modules/user"
-import { useDispatch } from "react-redux";
 
-const LoginModal = ({setIsM}) => {
-    const dispatch = useDispatch()
-    const [id,setId] = React.useState("")
-    const [pwd, setPwd] = React.useState("")
+const ReviewModal = ({setIsReview}) => {
+    const[v, setV] = useState(true);
 
-    const login =()=>{
-        dispatch(userActions.logInDB(id,pwd))
-    }
-return(
+  return(
      <React.Fragment>
-         <Black onClick={()=>setIsM(false)}/>
+         <Black onClick={()=>setIsReview(false)}/>
          <Wrap>
             <Header>
-                <div onClick={()=>setIsM(false)}>
+                <div onClick={()=>{setV(!v)}}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
-                <div>로그인</div>
+                <div>리뷰</div>
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"email"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
-            <Input placeholder={"password"} onChange={(e)=>{setPwd(e.target.value)}}></Input>
+            <Input placeholder={"email"} padding="0px 30px"></Input>
+            <Input placeholder={"nickname"}></Input>
+            <Input placeholder={"password"}></Input>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
-            <Button onClick={login}>로그인</Button>
+            <Button>회원가입</Button>
+            <div style={{    
+                width:" 100%",
+                marginTop: "16px",
+                marginBottom: "16px",
+                fontWeight: "400", 
+                fontSize:"12px",
+                lineHeight: "16px"}}>
+                    <div style={{
+                        overflow: "hidden",
+                        textAlign: "center"
+                    }}><span>또는</span></div></div>
         </Wrap>
     </React.Fragment>
   )
@@ -83,7 +88,7 @@ const Black= styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1010;
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color: rgba(0, 0, 0, 0.65);
 `
 
 const Header= styled.div`
@@ -102,4 +107,4 @@ const Header= styled.div`
     font-weight: 800;
 `
 
-export default LoginModal;
+export default ReviewModal;

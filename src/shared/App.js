@@ -10,8 +10,7 @@ import './App.css';
 // import PostList from '../pages/PostList';
 // import Login from '../pages/Login';
 import {Grid} from "../elements";
-import Header from "../components/Header";
-import DetailHeader from '../components/DetialHeader';
+// import Header from "../components/Header";
 // import PostWrite from '../pages/PostWrite';
 // import PostDetail from '../pages/PostDetail';
 import Calendar from "../components/Calendar"
@@ -20,13 +19,12 @@ function App() {
   return (
     <React.Fragment>
       <Grid>
-        <DetailHeader/>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main}/>
           {/* <Route path="/login" exact component={Login}/> */}
           {/* <Route path="/signup" exact component={Signup}/> */}
           {/* <Route path="/write" exact component={PostWrite}/> */}
-          <Route path="/detail" exact component={Detail}/>
+          <Route path="/detail/:id" exact component={Detail}/>
           <Route path="/Calendar" exact component={Calendar}/>
         </ConnectedRouter>
       </Grid>
