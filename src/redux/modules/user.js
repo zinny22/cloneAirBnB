@@ -21,7 +21,7 @@ const initialState ={
 //로그인 미들웨어 
 const logInDB = (id, pwd)=>{
     return async function(dispatch,getState, {history}){
-        await axios.post('http://52.79.227.179:3000/api/login',{
+        await axios.post('http://54.180.81.174:3000/api/login',{
             user_id: id,
             user_pwd : pwd
         })
@@ -39,7 +39,7 @@ const logInDB = (id, pwd)=>{
 const signUpDB = (id,nick,pwd,confirmpwd) =>{
     return function(dispatch,getState, {history}){
         console.log(id,nick,pwd,confirmpwd)
-        axios.post('http://52.79.227.179:3000/api/signup',{
+        axios.post('http://54.180.81.174:3000/api/signup',{
             user_id:id,
             user_nick:nick,
             user_pwd: pwd,

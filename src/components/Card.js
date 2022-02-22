@@ -32,7 +32,9 @@ const Card = (props)=> {
                                     <SwiperSlide key={i}>
                                         <ImgArea image_url={a} onClick={()=> {history.push(`/detail/${info._id}`);}}></ImgArea>
                                     </SwiperSlide>
+                                    
                                 )
+                                
                             })
                         }
                         <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>

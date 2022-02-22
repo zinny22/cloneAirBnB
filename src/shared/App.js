@@ -13,7 +13,6 @@ import {Grid} from "../elements";
 // import Header from "../components/Header";
 // import PostWrite from '../pages/PostWrite';
 // import PostDetail from '../pages/PostDetail';
-import Calendar from "../components/Calendar"
 import Write from '../pages/Write';
 
 function App() {
