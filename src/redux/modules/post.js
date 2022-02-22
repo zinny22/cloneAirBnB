@@ -4,14 +4,22 @@ import axios from "axios";
 
 const GET_POST = "GET_POST"
 const GET_POSTDETAIL = "GET_POSTDETAIL"
+const ADD_POST ="ADD_POST"
 
 const getPost = createAction(GET_POST, (postList) => ({postList}))
 //postDetail 은 내가 원하는 명으로 저장 
 const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}))
+const addPost = createAction(ADD_POST, (post)=>({post}))
 
 
 const initialState = {
     list: [],
+}
+
+const addPostDB = ()=>{
+  return function(dispatch, getState, { history }){
+    
+  }
 }
 
 const getPostDB = (category) => {
@@ -56,7 +64,11 @@ export default handleActions(
         console.log(action.payload)
         draft.detail = action.payload.postDetail
         console.log(draft.detail)
-      }),  
+      }),
+      [ADD_POST]: (state, action) =>
+      produce(state, (draft)=>{
+        console.log(action.payload)
+      })
     },
     initialState
   )
@@ -66,5 +78,7 @@ const actionCreators = {
     getPostDB,
     getPostDetail,
     getPostDetailDB,
+    addPostDB,
+    addPost
   }
   export { actionCreators }
