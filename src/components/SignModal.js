@@ -113,7 +113,8 @@ margin-bottom: 10px;
 border:1px solid gray;
 border-radius: 7px;
 cursor: pointer;
-width: 81%;
+width: calc(100% - 100px);
+box-sizing: border-box;
 :focus{
     border:none;
     outline: 1px solid rgb(255, 56, 92);
@@ -125,6 +126,8 @@ border: none;
 background-color:rgb(255, 56, 92) ;
 padding: 16px;
 color: white;
+width: 90px;
+margin-left: 10px;
 ` 
 
 const Button =styled.button`

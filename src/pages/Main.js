@@ -183,14 +183,12 @@ const CardContentsArea = styled.div`
   background-color: transparent;
   margin-top: 25px;
   @media screen and (min-width: 1128px) {
-    padding: 0 80px;
+    padding: 0 80px 60px 80px;
     max-width: none;
-    margin-bottom: 50px;
   }
   @media screen and (min-width: 0px) and (max-width: 1128px) {
-    padding: 0 24px;
+    padding: 0 24px 60px 24px;
     max-width: none;
-    margin-bottom: 50px;
   }
 `
 
@@ -198,7 +196,11 @@ const CardListArea = styled.div`
   display: grid;
   gap: 25px;
   box-sizing: border-box;
-  @media screen and (min-width: 1232px) {
+  @media screen and (min-width: 1607px){
+    grid-template-columns: repeat(5, minmax(0px, 1fr)) !important;
+    row-gap: 32px;
+  }
+  @media screen and (min-width: 1232px) and (max-width: 1607px) {
     grid-template-columns: repeat(4, minmax(0px, 1fr));
     row-gap: 32px;
   }
