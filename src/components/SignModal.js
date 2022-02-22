@@ -48,6 +48,22 @@ const SignModal = ({setIsSignup}) => {
         
         dispatch(userActions.signUpDB(id,nick,pwd,confirmpwd))
     }
+
+    const dubCheckId =()=>{
+        if(id ===""){
+            window.alert("아이디를 입력해 주세요")
+            return;
+        }
+        dispatch(userActions.dubCheckIdFB(id))
+    }
+
+    const dubCheckNick =()=>{
+        if(nick ===""){
+            window.alert("닉네임을 입력해 주세요")
+            return;
+        }
+        dispatch(userActions.dubCheckNickFB(nick))
+    }
 return(
      <React.Fragment>
          <Black onClick={()=>setIsSignup(false)}/>
@@ -60,8 +76,14 @@ return(
                 <div></div>
             </Header>
             <Text size="22px" bold>에어비엔비에 오신걸 환영합니다</Text>
-            <Input placeholder={"id는 영문 대,소문자와 숫자를 포함한 3~30자"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
-            <Input placeholder={"nickname은 한글, 영문, 숫자만 가능 4~10자리"} onChange={(e)=>{setNick(e.target.value)}}></Input>
+            <div style={{displayL:"flex", justifyContent:"space-around"}}>
+                <Input placeholder={"id는 영문 대,소문자와 숫자를 포함한 4~16자"} padding="0px 30px" onChange={(e)=>{setId(e.target.value)}}></Input>
+                <Cbutton onClick={dubCheckId}>중복체크</Cbutton>
+            </div>
+            <div style={{displayL:"flex", justifyContent:"space-around"}}>
+                <Input placeholder={"nickname은 한글, 영문, 숫자만 가능 4~10자리"} onChange={(e)=>{setNick(e.target.value)}}></Input>
+                <Cbutton onClick={dubCheckNick}>중복체크</Cbutton>
+            </div>
             <input type={"password"} onChange={(e)=>{setPwd(e.target.value)}} style={{
                 padding: "16px",
                 marginBottom: "10px",
@@ -69,7 +91,7 @@ return(
                 borderRadius: "7px",
                 cursor: "pointer",
                 }}
-                placeholder={"password는 영문 대,소문자와 숫자를 포함한 4~30자"}/>
+                placeholder={"password는 영문 대,소문자와 숫자를 포함한 4~16자"}/>
             <input type={"password"} onChange={(e)=>{setConfirmpwd(e.target.value)}} style={{
                 padding: "16px",
                 marginBottom: "10px",
@@ -77,7 +99,6 @@ return(
                 borderRadius: "7px",
                 cursor: "pointer",
                 }}
-                onMouseDown ="border=none"
                 placeholder={"password를 한번 더 확인해주세요"}/>
             <Text color="gray">작성하신 메일 주소를 통해 메일을 확인하겠습니다.<strong style={{textDecoration:"underline"}}>개인정보 처리방침</strong> </Text>
             <Button onClick={()=>{signup(); setIsSignup(false);}}>회원가입</Button>
@@ -92,11 +113,19 @@ margin-bottom: 10px;
 border:1px solid gray;
 border-radius: 7px;
 cursor: pointer;
+width: 81%;
 :focus{
     border:none;
     outline: 1px solid rgb(255, 56, 92);
 } 
 `
+const Cbutton =styled.button`
+border-radius: 6px;
+border: none;
+background-color:rgb(255, 56, 92) ;
+padding: 16px;
+color: white;
+` 
 
 const Button =styled.button`
 border-radius: 6px;
