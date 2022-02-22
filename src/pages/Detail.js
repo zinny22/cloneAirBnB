@@ -208,7 +208,6 @@ const Detail = (props) => {
         </Grid>
         <Calendar/>
         </LeftGrid>
-        
         <RightGrid>
         <MoveCard>하이루</MoveCard>
         </RightGrid>
