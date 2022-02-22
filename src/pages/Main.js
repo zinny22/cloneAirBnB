@@ -4,8 +4,10 @@ import Header from '../components/Header'
 import Card from '../components/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 import { actionCreators as postActions } from "../redux/modules/post"
 import { useDispatch, useSelector } from "react-redux"
+import Map from '../components/Map'
 
 const Main = ()=> {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -29,6 +31,8 @@ const Main = ()=> {
     let post_list = useSelector((state) => state.post.list.homes
     )
 
+    const [toggleMap, setToggleMap] = React.useState(false)
+
     return(
         <React.Fragment>
           <Header></Header>
@@ -51,7 +55,8 @@ const Main = ()=> {
               <FilterBtn>필터</FilterBtn>
             </FilterArea>
           </Nav>
-          <CardContentsArea>
+          {toggleMap === false ? (
+            <CardContentsArea>
               <CardListArea>
                 { post_list &&
                   post_list.map((info, idx) => {
@@ -63,10 +68,22 @@ const Main = ()=> {
                   })
                 }
               </CardListArea>
-          </CardContentsArea>
-          <MapBtn onClick={()=> window.alert("사용 가능하지 않은 서비스입니다.")}>
-            <span>지도 표시하기</span>
-            <FontAwesomeIcon icon={faMap}/>
+            </CardContentsArea>
+          ) : (
+          <Map post_list={post_list}/>
+          )}
+          <MapBtn onClick={()=> setToggleMap(!toggleMap)}>
+            {toggleMap === false ? (
+              <React.Fragment>
+                <span>지도 표시하기</span>
+                <FontAwesomeIcon icon={faMap}/>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <span>목록 보기</span>
+                <FontAwesomeIcon icon={faList}/>
+              </React.Fragment>
+            )}
           </MapBtn>
         </React.Fragment>
     )
