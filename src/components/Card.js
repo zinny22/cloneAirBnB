@@ -9,6 +9,8 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, {Navigation, Pagination} from "swiper";
 import {history} from "../redux/configureStore";
+import { actionCreators as likeActions } from '../redux/modules/like';
+import { useDispatch, useSelector } from "react-redux"
 
 const Card = (props)=> {
     const [swiper, setSwiper] = useState(null);
@@ -21,6 +23,11 @@ const Card = (props)=> {
 
     const { info } = props
 
+    const dispatch = useDispatch()
+    let user_list = useSelector((state) => state.user)
+
+    console.log(user_list);
+
     return(
         <React.Fragment>
             <CardContents>
@@ -30,7 +37,7 @@ const Card = (props)=> {
                             info.image_url.map((a, i) => {
                                 return(
                                     <SwiperSlide key={i}>
-                                        <ImgArea image_url={a} onClick={()=> {history.push(`/detail/${info._id}`);}}></ImgArea>
+                                        <ImgArea image_url={a} onClick={()=> {history.push(`/detail/${info.id}`);}}></ImgArea>
                                     </SwiperSlide>
                                     
                                 )
@@ -40,15 +47,15 @@ const Card = (props)=> {
                         <IconArea>
                             {
                                 info.isLike === false ?
-                                <FontAwesomeIcon icon={faHeart}/> : <div>하트하트하트하트</div>
+                                <FontAwesomeIcon icon={faHeart} onClick={()=> {dispatch(likeActions.likeDB(info.id));}}/> : <div onClick={()=> {dispatch(likeActions.UnLikeDB(info.id));}}>하트하트하트하트</div>
                             }
                             </IconArea>
                     </StyledSwiper>
-                    <Grid is_flex onClick={()=> {history.push(`/detail/${info._id}`);}}>
+                    <Grid is_flex onClick={()=> {history.push(`/detail/${info.id}`);}}>
                         <Text size="16px" width="calc(100% - 95px)" bold flow>{info.address}</Text>
                         <Text size="16px" width="90px" right>₩{info.price}/박</Text>
                     </Grid>
-                    <Grid is_flex onClick={()=> {history.push(`/detail/${info._id}`);}}>
+                    <Grid is_flex onClick={()=> {history.push(`/detail/${info.id}`);}}>
                         <Text color="#717171" size="16px">{info.distance}km 거리</Text>
                         <Text color="#717171" size="16px">{info.availableDate}</Text>
                     </Grid>
