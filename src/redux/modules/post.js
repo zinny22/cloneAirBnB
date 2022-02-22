@@ -17,7 +17,11 @@ const initialState = {
 const getPostDB = (category) => {
     return function (dispatch, getState, { history }) {
         axios
-          .get(`http://54.180.81.174:3000/api/homes?category=${category}`)
+          .get(`http://54.180.81.174:3000/api/homes?category=${category}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("is_login")}`,
+            },
+          })
           .then((res) => {
             dispatch(getPost(res.data))
           })

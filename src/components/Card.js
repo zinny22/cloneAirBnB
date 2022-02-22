@@ -37,7 +37,12 @@ const Card = (props)=> {
                                 
                             })
                         }
-                        <IconArea><FontAwesomeIcon icon={faHeart}/></IconArea>
+                        <IconArea>
+                            {
+                                info.isLike === false ?
+                                <FontAwesomeIcon icon={faHeart}/> : <div>하트하트하트하트</div>
+                            }
+                            </IconArea>
                     </StyledSwiper>
                     <Grid is_flex onClick={()=> {history.push(`/detail/${info._id}`);}}>
                         <Text size="16px" width="calc(100% - 95px)" bold flow>{info.address}</Text>
