@@ -15,8 +15,22 @@ import {Grid} from "../elements";
 // import PostDetail from '../pages/PostDetail';
 import Calendar from "../components/Calendar"
 import Write from '../pages/Write';
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
+
+  const dispatch =useDispatch()
+  const is_login = localStorage.getItem("is_login")? true : false;
+  const user = useSelector((state) => state.user);
+  console.log(user)
+
+  React.useEffect(()=>{
+    if(is_login){
+      dispatch(userActions.loginCheckDB());
+    }
+  },[])
+
   return (
     <React.Fragment>
       <Grid>

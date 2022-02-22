@@ -10,7 +10,7 @@ const LOG_OUT ="LOG_OUT";
 
 //액션생성함수 
 const logout = createAction(LOG_OUT,(user)=>({user}))
-const setUser = createAction(SET_USER, () => ({}));
+const setUser = createAction(SET_USER, (user) => ({user}));
 
 const initialState ={
     user:null,
@@ -21,17 +21,25 @@ const initialState ={
 //로그인 미들웨어 
 const logInDB = (id, pwd)=>{
     return async function(dispatch,getState, {history}){
+        const is_login =localStorage.getItem("is_login")
         await axios.post('http://54.180.81.174:3000/api/login',{
             user_id: id,
             user_pwd : pwd
         })
         .then((response)=>{
             window.alert("로그인이 완료 되었습니다")
+            console.log(response)
             localStorage.setItem("is_login", response.data.token)
-            dispatch(setUser())
+            dispatch(setUser({
+                is_login: is_login,
+                user_id:response.data.user_id,
+                user_nick:response.data.user_nick
+            }
+            ))
         })
         .catch((error)=>{
             console.log(error);
+            window.alert("아이디 비밀번호가 일치하지 않습니다")
         })
     }
 }
@@ -64,14 +72,66 @@ const logOutDB =()=>{
     }
 }
 
+//로그인 체크 미들웨어
+const loginCheckDB =()=>{
+    return function(dispatch, getState, {history}){
+        const is_login =localStorage.getItem("is_login")
+        axios.get('http://54.180.81.174:3000/api/auth',
+        {headers: {Authorization : `Bearer ${localStorage.getItem("is_login")}`,},})
+        .then((response)=>{
+            console.log(response)
+            dispatch(setUser({
+                is_login: is_login,
+                user_id:response.data.user_id,
+                user_nick:response.data.user_nick
+            }))
+            history.push('/')
+        })
+        .catch((error)=>{
+            window.alert(error)
+        })
+    }
+}
+
+//중복체크 미들웨어
+const dubCheckIdFB =(id)=>{
+    return function(dispatch, getState, {history}){
+        axios.post('http://54.180.81.174:3000/api/checkid',
+        {user_id: id})
+        .then((response)=>{
+            console.log(response)
+            // window.alert(response.data.success)
+        }).catch((error)=>{
+            console.log(error)
+            // window.alert(error.data.fail)
+        })
+    }
+}
+
+const dubCheckNickFB =(nick)=>{
+    return function(dispatch, getState, {history}){
+        axios.post('http://54.180.81.174:3000/api/checknick',
+        {user_nick: nick})
+        .then((response)=>{
+            console.log(response)
+            // window.alert(response.data.success)
+        }).catch((error)=>{
+            console.log(error)
+            // window.alert(error.data.fail)
+        })
+    }
+}
+
 export default handleActions(
     {
         [SET_USER]:(state, action) => produce(state, (draft)=>{
+            draft.user= action.payload.user
             draft.is_login = true;
             console.log(draft.is_login)
         }),
         [LOG_OUT]:(state, action) => produce (state,(draft)=>{
             localStorage.clear();
+            draft.user=null
             draft.is_login =false;
         }),
     },
@@ -83,6 +143,9 @@ const actionCreators ={
     logInDB,
     logOutDB,
     setUser,
-    logout
+    logout,
+    loginCheckDB,
+    dubCheckIdFB,
+    dubCheckNickFB
 }
 export {actionCreators}
