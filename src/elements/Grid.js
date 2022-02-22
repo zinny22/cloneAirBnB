@@ -50,7 +50,6 @@ Grid.defaultProps = {
     center: false,
     _font: false,
     _onClick: () => {},
-    height: null,
     is_detail : null,
 }
 
