@@ -21,6 +21,7 @@ function App() {
 
   const dispatch =useDispatch()
   const is_login = localStorage.getItem("is_login")? true : false;
+  console.log(is_login)
   const user = useSelector((state) => state.user);
   console.log(user)
 

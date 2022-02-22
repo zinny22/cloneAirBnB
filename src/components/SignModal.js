@@ -112,7 +112,7 @@ padding: 16px;
 margin-bottom: 10px;
 border:1px solid gray;
 border-radius: 7px;
-cursor: pointer;
+cursor:auto;
 width: calc(100% - 100px);
 box-sizing: border-box;
 :focus{

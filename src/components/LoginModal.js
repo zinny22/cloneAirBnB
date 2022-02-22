@@ -45,7 +45,7 @@ padding: 16px;
 margin-bottom: 10px;
 border:1px solid gray;
 border-radius: 7px;
-cursor: pointer;
+cursor:auto;
 :focus{
     border:none;
     outline: 1px solid rgb(255, 56, 92);

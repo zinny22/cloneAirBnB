@@ -21,7 +21,6 @@ const initialState ={
 //로그인 미들웨어 
 const logInDB = (id, pwd)=>{
     return async function(dispatch,getState, {history}){
-        const is_login =localStorage.getItem("is_login")
         await axios.post('http://54.180.81.174:3000/api/login',{
             user_id: id,
             user_pwd : pwd
@@ -31,9 +30,9 @@ const logInDB = (id, pwd)=>{
             console.log(response)
             localStorage.setItem("is_login", response.data.token)
             dispatch(setUser({
-                is_login: is_login,
-                user_id:response.data.user_id,
-                user_nick:response.data.user_nick
+                is_login: response.data.token,
+                user_id:response.data.user.user_id,
+                user_nick:response.data.user.user_nick
             }
             ))
         })
@@ -75,17 +74,16 @@ const logOutDB =()=>{
 //로그인 체크 미들웨어
 const loginCheckDB =()=>{
     return function(dispatch, getState, {history}){
-        const is_login =localStorage.getItem("is_login")
         axios.get('http://54.180.81.174:3000/api/auth',
-        {headers: {Authorization : `Bearer ${localStorage.getItem("is_login")}`,},})
+        {headers: {Authorization : `Bearer ${localStorage.getItem("is_login")}`}})
         .then((response)=>{
             console.log(response)
             dispatch(setUser({
-                is_login: is_login,
-                user_id:response.data.user_id,
-                user_nick:response.data.user_nick
+                is_login: response,
+                user_id:response.data.user.user_id,
+                user_nick:response.data.user.user_nick
             }))
-            history.push('/')
+            // history.push('/')
         })
         .catch((error)=>{
             window.alert(error)
@@ -96,11 +94,13 @@ const loginCheckDB =()=>{
 //중복체크 미들웨어
 const dubCheckIdFB =(id)=>{
     return function(dispatch, getState, {history}){
-        axios.post('http://54.180.81.174:3000/api/checkid',
+        axios.post('http://54.180.81.174:3000/api/signup/checkid',
         {user_id: id})
         .then((response)=>{
             console.log(response)
-            // window.alert(response.data.success)
+            console.log(response.data.success)
+            console.log(response.data.fail)
+            window.alert(response.data.msg)
         }).catch((error)=>{
             console.log(error)
             // window.alert(error.data.fail)
@@ -110,11 +110,11 @@ const dubCheckIdFB =(id)=>{
 
 const dubCheckNickFB =(nick)=>{
     return function(dispatch, getState, {history}){
-        axios.post('http://54.180.81.174:3000/api/checknick',
+        axios.post('http://54.180.81.174:3000/api/signup/checknick',
         {user_nick: nick})
         .then((response)=>{
             console.log(response)
-            // window.alert(response.data.success)
+            window.alert(response.data.msg)
         }).catch((error)=>{
             console.log(error)
             // window.alert(error.data.fail)
@@ -125,9 +125,10 @@ const dubCheckNickFB =(nick)=>{
 export default handleActions(
     {
         [SET_USER]:(state, action) => produce(state, (draft)=>{
-            draft.user= action.payload.user
+            draft.user = action.payload.user
             draft.is_login = true;
             console.log(draft.is_login)
+            console.log(draft.user)
         }),
         [LOG_OUT]:(state, action) => produce (state,(draft)=>{
             localStorage.clear();
