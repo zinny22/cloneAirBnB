@@ -56,7 +56,7 @@ const addPostDB = (home, address, introduce, price,category,image_url)=>{
         history.push('/')
       })
       .catch((error)=>{
-        console.log(error)
+        console.log(error)})}}
 
 const addCommentDB = (home_id, comment)=>{
   console.log(home_id, comment)
@@ -147,33 +147,25 @@ const upLoadDB =(formData)=>{
 
 export default handleActions(
     {
-      [GET_POST]: (state, action) =>
-        produce(state, (draft) => {
+      [GET_POST]: (state, action) =>produce(state, (draft) => {
           draft.list = action.payload.postList
           console.log(draft.list)
         }),
-      [GET_POSTDETAIL]: (state, action) =>
-      produce(state, (draft) => {
+      [GET_POSTDETAIL]: (state, action) =>produce(state, (draft) => {
         console.log(action.payload)
         draft.detail = action.payload.postDetail
         console.log(draft.detail)
       }),
-      [GET_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
+      [GET_COMMENT]: (state, action) =>produce(state, (draft) => {
         draft.comment = action.payload
       }),
-      [ADD_POST]: (state, action) =>
-      produce(state, (draft)=>{
+      [ADD_POST]: (state, action) =>produce(state, (draft)=>{
         draft.list.unshift(action.payload.postList)
       }),
-      [ADD_IMAGE]:(state, action)=>
-      produce(state,(draft)=>{
+      [ADD_IMAGE]:(state, action)=>produce(state,(draft)=>{
         draft.imgurl = action.payload.imgurl
-      })
-        console.log(action.payload)
       }),
-      [ADD_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
+      [ADD_COMMENT]: (state, action) =>produce(state, (draft) => {
         console.log(action.payload)
         console.log("하이루룰루", action)
         draft.comment.unshift(action.payload.comment)
@@ -181,7 +173,8 @@ export default handleActions(
       }),
     },
     initialState
-  )
+)
+
 
 const actionCreators = {
     getPost,
@@ -190,9 +183,9 @@ const actionCreators = {
     getPostDetailDB,
     addPostDB,
     addPost,
-    upLoadDB
-    getCommentDB,
+    upLoadDB,
     addCommentDB,
     addPost
   }
+
   export { actionCreators }
