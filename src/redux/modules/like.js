@@ -23,8 +23,8 @@ const likeDB = (home_id, user_id) => {
             }
           })
           .then((res) => {
-            dispatch(isLike(true))
             window.alert(res.data.success);
+            window.location.reload("");
           })
           .catch((err) => {
             console.error(err)
@@ -41,7 +41,6 @@ const UnLikeDB = (home_id) => {
             }
           })
           .then((res) => {
-            dispatch(isLike(false))
             window.alert(res.data.success);
             window.location.reload("");
           })

@@ -26,10 +26,11 @@ const Card = (props)=> {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user.user)
     const is_login = useSelector((state) => state.user.is_login);
-    let is_like = useSelector((state) => state.like.is_like);
+    const [isLike, setIsLike] = useState(false);
 
     let likeButton = () => {
-        if(is_login) { 
+        if(is_login) {
+            setIsLike(true)
             dispatch(likeActions.likeDB(info.id, user.user_id));
         } else {
           window.alert('로그인 후 찜하기를 눌러주세요!')
@@ -55,8 +56,8 @@ const Card = (props)=> {
                         }
                         <IconArea>
                             {
-                                info.isLike === false && is_like === false ?
-                                <FaRegHeart style={{color: "#fff"}} onClick={likeButton}/> : <FaHeart style={{color: "#FF385C"}} onClick={()=> {dispatch(likeActions.UnLikeDB(info.id));}}/>
+                                info.isLike === false && isLike === false ?
+                                <FaRegHeart style={{color: "#fff"}} onClick={likeButton}/> : <FaHeart style={{color: "#FF385C"}} onClick={()=> {setIsLike(false); dispatch(likeActions.UnLikeDB(info.id));}}/>
                             }
                             </IconArea>
                     </StyledSwiper>

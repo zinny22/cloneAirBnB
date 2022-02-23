@@ -32,6 +32,30 @@ const Marker = props => {
 
 const Markercontent = styled.div`
     position: relative;
+    &:nth-child(1) {top: -40%; left: 0%;}
+    &:nth-child(2) {top: -30%; left: -15%;}
+    &:nth-child(3) {top: -30%; left: 0%;}
+    &:nth-child(4) {top: -17%; left: -5%;}
+    &:nth-child(5) {top: 0%; left: 10%;}
+    &:nth-child(6) {top: -5%; left: 0%;}
+    &:nth-child(7) {top: -15%; left: 8%;}
+    &:nth-child(8) {top: -40%; left: -3%;}
+    &:nth-child(9) {top: -30%; left: -15%;}
+    &:nth-child(10) {top: -0%; left: -5%;}
+    &:nth-child(11) {top: 0%; left: 5%;}
+    &:nth-child(12) {top: -45%; left: 10%;}
+    &:nth-child(13) {top: -40%; left: -5%;}
+    &:nth-child(14) {top: -55%; left: -3%;}
+    &:nth-child(15) {top: -40%; left: -10%;}
+    &:nth-child(16) {top: -30%; left: -7%;}
+    &:nth-child(17) {top: -70%; left: -10%;}
+    &:nth-child(18) {top: -32%; left: -8%;}
+    &:nth-child(19) {top: -37%; left: 7%;}
+    &:nth-child(20) {top: 8%; left: 1%;}
+    &:nth-child(20) {top: -15%; left: 1%;}
+    &:nth-child(20) {top: -32%; left: 4%;}
+    &:nth-child(20) {top: -48%; left: -7%;}
+    &:nth-child(20) {top: -8%; left: -1%;}
 `
 
 const PriceMarker = styled.div`

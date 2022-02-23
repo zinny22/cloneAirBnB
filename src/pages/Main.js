@@ -105,7 +105,6 @@ const Nav = styled.div`
   top: 0;
   z-index: 5;
   background-color: #fff;
-  padding: 12px 80px 10px;
   box-sizing: border-box;
   box-shadow: 0;
   transition: box-shadow 0.2s;
@@ -113,6 +112,18 @@ const Nav = styled.div`
     box-shadow: 0px 15px 15px -15px #80808085;
   }
   display: flex;
+  @media screen and (min-width: 1128px) {
+    padding: 12px 80px 10px;
+    max-width: none;
+  }
+  @media screen and (min-width: 800px) and (max-width: 1128px) {
+    padding: 12px 24px 10px;
+    max-width: none;
+  }
+  @media screen and (min-width: 0) and (max-width: 800px){
+    flex-direction: column-reverse;
+    position: static;
+  }
 `
 const CategoryArea = styled.div`
   -webkit-box-align: center !important;
@@ -120,6 +131,9 @@ const CategoryArea = styled.div`
   display: flex !important;
   align-items: center !important;
   width: 100%;
+  @media screen and (min-width: 0) and (max-width: 800px){
+    justify-content: center;
+  }
 `
 const CategoryContent = styled.div`
   &:nth-child(1) .category_icon{
@@ -142,6 +156,14 @@ const CategoryContent = styled.div`
 const FilterArea = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (min-width: 0) and (max-width: 800px){
+    justify-content: center;
+    border-radius: 30px;
+    padding: 10px 16px;
+    background-color: rgb(247, 247, 247);
+    width: 200px;
+    margin: 10px auto 20px;
+  }
 `
 const FilterBtn = styled.button`
   height: 40px;
@@ -154,6 +176,15 @@ const FilterBtn = styled.button`
   color: rgb(34, 34, 34);
   &:not(:first-child){
     margin-left: 8px;
+  }
+  @media screen and (min-width: 0) and (max-width: 800px){
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    &:not(:first-child){
+      margin-left: 0px;
+    }
   }
 `
 
@@ -186,6 +217,11 @@ const Category = styled.div`
     height: 20px;
     margin-right: 10px;
     float: left;
+  }
+  @media screen and (min-width: 0) and (max-width: 800px){
+    &:before {
+      content: ""; width: 0%; height: 0;
+    }
   }
 `
 

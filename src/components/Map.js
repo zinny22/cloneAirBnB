@@ -15,13 +15,9 @@ const Map = props => {
             >
             {
               post_list.map((v, idx) => {
-                const location = v.geolocation.split(",")
-                console.log(location)
                 return (
                   <React.Fragment key={idx}>
                     <Marker
-                      lat={location[0]}
-                      lng={location[1]}
                       text={`₩${v.price}`}
                       info={v}
                     />
