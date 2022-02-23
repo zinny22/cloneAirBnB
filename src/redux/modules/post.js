@@ -14,16 +14,21 @@ const getPost = createAction(GET_POST, (postList) => ({postList}))
 const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}))
 const addPost = createAction(ADD_POST, (post)=>({post}))
 const getComment = createAction(GET_COMMENT, (comment_list)=>(comment_list))
-const addComment = createAction(ADD_COMMENT, (comment)=>(comment))
+const addComment = createAction(ADD_COMMENT, (comment, user_nick)=>({comment, user_nick}))
 
 
 const initialState = {
     list: [],
 }
 
-const addCommentDB = (home_id, comment)=>{
+const addCommentDB = (home_id, comment, user_nick)=>{
   console.log(home_id, comment)
   return function(dispatch, getState, { history }){
+    const _commentInfo = {
+      comment : comment, 
+      user_nick : user_nick,
+    }
+    let commentInfo ={..._commentInfo}
     axios
       .post(`http://54.180.81.174:3000/api/comment/save/write/${home_id}`, {
         comment : comment,
@@ -33,7 +38,7 @@ const addCommentDB = (home_id, comment)=>{
       },
       )
       .then((res) => {
-        dispatch(addComment(res.data))
+        dispatch(addComment(commentInfo))
         console.log(res)
       })
       .catch((err) => {
@@ -115,8 +120,7 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload)
         console.log("하이루룰루", action)
-        draft.comment.unshift(action.payload.comment)
-        console.log(draft.comment)
+        draft.comment.push(action.payload.comment)
       }),
     },
     initialState

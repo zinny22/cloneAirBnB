@@ -24,9 +24,9 @@ const CommentList = ({home_id}, props) => {
       <React.Fragment>
         <Grid padding="2vh 0 0">
           {comment ? comment.map((c, idx) => {
-            if (user.user_nick === c.user_nick)
+            // if (user.user_nick === c.user_nick)
               return <CommentItem key={idx} {...c} isMe />;
-            else return <CommentItem key={idx} {...c} />;
+            // else return <CommentItem key={idx} {...c} />;
           }) : ""}
         </Grid>
       </React.Fragment>
