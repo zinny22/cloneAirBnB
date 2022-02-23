@@ -8,6 +8,7 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import { actionCreators as postActions } from "../redux/modules/post"
 import { useDispatch, useSelector } from "react-redux"
 import Map from '../components/Map'
+import Footer from "../components/Footer";
 
 const Main = ()=> {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -85,6 +86,7 @@ const Main = ()=> {
               </React.Fragment>
             )}
           </MapBtn>
+          <Footer/>
         </React.Fragment>
     )
 }

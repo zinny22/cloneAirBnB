@@ -10,6 +10,7 @@ import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import ReviewModal from "../components/ReviewModal";
 import IntroduceModal from "../components/IntroduceModal";
+import Footer from "../components/Footer";
 
 
 const Detail = (props) => {
@@ -357,6 +358,7 @@ const Detail = (props) => {
             </Host>
         </Grid>
         </Grid>
+        <Footer/>
         </React.Fragment>
     )
 }
