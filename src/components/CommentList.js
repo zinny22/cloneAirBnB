@@ -24,9 +24,9 @@ const CommentList = ({home_id}, props) => {
       <React.Fragment>
         <Grid padding="2vh 0 0">
           {comment ? comment.map((c, idx) => {
-            if (user.user_nick === c.user_nick)
+            // if (user.user_nick === c.user_nick)
               return <CommentItem key={idx} {...c} isMe />;
-            else return <CommentItem key={idx} {...c} />;
+            // else return <CommentItem key={idx} {...c} />;
           }) : ""}
         </Grid>
       </React.Fragment>
@@ -167,7 +167,7 @@ const WButton =styled.button`
     commentId: 'test123',
     comment: '좋은 상품이네요',
     postId: '123',
-    nickname: '쇼핑하는 토끼',
+    user_nick: '혜진님은 다이어트중',
     userId: 'user12345',
     createdAt: '2022-02-12T15:40:03.201Z',
     updatedAt: '2022-02-12T15:40:03.201Z',
