@@ -8,6 +8,7 @@ const ADD_POST ="ADD_POST"
 // 코멘트
 const ADD_COMMENT = "ADD_COMMENT"
 const GET_COMMENT = "GET_COMMENT"
+const DEL_COMMENT = "DEL_COMMENT"
 
 const getPost = createAction(GET_POST, (postList) => ({postList}))
 //postDetail 은 내가 원하는 명으로 저장 
@@ -15,7 +16,7 @@ const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}
 const addPost = createAction(ADD_POST, (post)=>({post}))
 const getComment = createAction(GET_COMMENT, (comment_list)=>(comment_list))
 const addComment = createAction(ADD_COMMENT, (comment, user_nick)=>({comment, user_nick}))
-
+const delComment = createAction(DEL_COMMENT, (comment, home_name) => ({comment, home_name}))
 
 const initialState = {
     list: [],
@@ -63,6 +64,24 @@ const getCommentDB = (home_id)=>{
       })
   }
 }
+
+const delCommentDB = (home_id)=>{
+  return function(dispatch, getState, { history }){
+    axios
+      .delete(`http://54.180.81.174:3000/api/comment/${home_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("is_login")}`,
+        },
+      })
+      .then((res) => {
+        dispatch(getComment(res.data.comment_list))
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+}
+
 
 
 const getPostDB = (category) => {

@@ -44,7 +44,7 @@ const CommentList = ({home_id}, props) => {
   
     // 댓글 삭제
     const delComment = () => {
-      dispatch(postActions.delCommentAPI(commentId));
+      dispatch(postActions.delCommentDB(commentId));
     };
   
     // 댓글 수정 시작
