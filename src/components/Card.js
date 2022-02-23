@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components'
 import { Grid, Text } from "../elements";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -11,6 +9,8 @@ import SwiperCore, {Navigation, Pagination} from "swiper";
 import {history} from "../redux/configureStore";
 import { actionCreators as likeActions } from '../redux/modules/like';
 import { useDispatch, useSelector } from "react-redux"
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const Card = (props)=> {
     const [swiper, setSwiper] = useState(null);
@@ -24,10 +24,19 @@ const Card = (props)=> {
     const { info } = props
 
     const dispatch = useDispatch()
-    let user_list = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user.user)
+    const is_login = useSelector((state) => state.user.is_login);
+    let is_like = useSelector((state) => state.like.is_like);
 
-    console.log(user_list);
+    let likeButton = () => {
+        if(is_login) { 
+            dispatch(likeActions.likeDB(info.id, user.user_id));
+        } else {
+          window.alert('로그인 후 찜하기를 눌러주세요!')
+        }
+    }
 
+    
     return(
         <React.Fragment>
             <CardContents>
@@ -46,8 +55,8 @@ const Card = (props)=> {
                         }
                         <IconArea>
                             {
-                                info.isLike === false ?
-                                <FontAwesomeIcon icon={faHeart} onClick={()=> {dispatch(likeActions.likeDB(info.id));}}/> : <div onClick={()=> {dispatch(likeActions.UnLikeDB(info.id));}}>하트하트하트하트</div>
+                                info.isLike === false && is_like === false ?
+                                <FaRegHeart style={{color: "#fff"}} onClick={likeButton}/> : <FaHeart style={{color: "#FF385C"}} onClick={()=> {dispatch(likeActions.UnLikeDB(info.id));}}/>
                             }
                             </IconArea>
                     </StyledSwiper>
@@ -154,10 +163,8 @@ const IconArea = styled.div`
     z-index: 10;
     svg{
         display: block;
-        fill: rgba(0, 0, 0, 0.5);
         height: 24px;
         width: 24px;
-        color: #fff;
     }
 `
 export default Card

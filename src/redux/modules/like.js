@@ -4,9 +4,10 @@ import axios from "axios";
 
 const IS_LIKE = "IS_LIKE"
 
-const isLike = createAction(IS_LIKE, () => ({}));
+const isLike = createAction(IS_LIKE, (is_like) => ({is_like}));
 
 const initialState = {
+    list: [],
     is_like: false
 };
 
@@ -14,13 +15,16 @@ const initialState = {
 const likeDB = (home_id, user_id) => {
     return function (dispatch, getState, { history }) {
         axios
-          .post(`/api/homes/${home_id}/likes`, {
+          .post(`http://54.180.81.174:3000/api/homes/${home_id}/likes`,{
+
+          }, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("is_login")}`,
-            },
+            }
           })
           .then((res) => {
             dispatch(isLike(true))
+            window.alert(res.data.success);
           })
           .catch((err) => {
             console.error(err)
@@ -28,16 +32,18 @@ const likeDB = (home_id, user_id) => {
     }
 }
 
-const UnLikeDB = (home_id, user_id) => {
+const UnLikeDB = (home_id) => {
     return function (dispatch, getState, { history }) {
         axios
-          .delete(`/api/homes/${home_id}/likes`, {
+          .delete(`http://54.180.81.174:3000/api/homes/${home_id}/likes`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("is_login")}`,
-            },
+              Authorization: `Bearer ${localStorage.getItem("is_login")}`
+            }
           })
           .then((res) => {
             dispatch(isLike(false))
+            window.alert(res.data.success);
+            window.location.reload("");
           })
           .catch((err) => {
             console.error(err)

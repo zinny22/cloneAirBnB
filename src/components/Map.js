@@ -1,5 +1,6 @@
 import React from 'react'
 import GoogleMap from 'google-map-react'
+import Marker from '../components/Marker'
 
 const Map = props => {
   const { post_list, zoom, center} = props
@@ -12,6 +13,22 @@ const Map = props => {
               defaultCenter={center}
               defaultZoom={zoom}
             >
+            {
+              post_list.map((v, idx) => {
+                const location = v.geolocation.split(",")
+                console.log(location)
+                return (
+                  <React.Fragment key={idx}>
+                    <Marker
+                      lat={location[0]}
+                      lng={location[1]}
+                      text={`₩${v.price}`}
+                      info={v}
+                    />
+                  </React.Fragment>
+                )
+              })
+            }
             </GoogleMap>
           </div>
         </React.Fragment>

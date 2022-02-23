@@ -7,7 +7,7 @@ import User from "./modules/user";
 import Post from "./modules/post";
 // // import Image from "./modules/image";
 // // import Star from "./modules/star";
-// // import Like from "./modules/like";
+import Like from "./modules/like";
 // // import Comment from "./modules/comment"
 
 
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   post: Post,
   // // image: Image,
   // // star: Star,
-  // // like: Like,
+  like: Like,
   // // comment:Comment,
   router: connectRouter(history),
 });
