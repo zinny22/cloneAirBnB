@@ -9,6 +9,7 @@ import { actionCreators as postActions } from "../redux/modules/post"
 import { useDispatch, useSelector } from "react-redux"
 import Map from '../components/Map'
 import Footer from "../components/Footer";
+import FilterModal from "../components/FilterModal";
 
 const Main = ()=> {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -33,7 +34,10 @@ const Main = ()=> {
     )
 
     const [toggleMap, setToggleMap] = React.useState(false)
+    const [isModal, setIsModal] = React.useState(false)
 
+
+    console.log(post_list)
     return(
         <React.Fragment>
           <Header></Header>
@@ -53,7 +57,11 @@ const Main = ()=> {
             <FilterArea>
               <FilterBtn>언제든</FilterBtn>
               <FilterBtn>인원</FilterBtn>
-              <FilterBtn>필터</FilterBtn>
+              <FilterBtn onClick={()=> setIsModal(true)}>필터
+                {
+                  isModal &&<FilterModal/>
+                }
+              </FilterBtn>
             </FilterArea>
           </Nav>
           {toggleMap === false ? (
@@ -156,7 +164,7 @@ const Category = styled.div`
   background: transparent;
   cursor: pointer;
   position: relative;
-  ${(props)=> props.idx === props.clickCategory ? `pointer-events: none;` : ""}
+  ${(props)=> props.idx === props.clickCategory ? `pointer-events: none;` : ""};
   &:hover {
     background: #F7F7F7;
   }
