@@ -183,6 +183,7 @@ const LeftArrow = styled.button`
 const Day = styled.table`
     border-collapse: separate;
     border-spacing: 1.5rem 1.5rem;
+    cursor: pointer;
 `
 
 export default Calendar;
