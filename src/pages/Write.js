@@ -1,25 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Logo2 from "../elements/Logo2";
-import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 const Write =()=>{
-    const Options = [
-        {value: "초소형 주택", name:"초소형 주택" },
-        {value: "해변근처", name:"해변근처" },
-        {value: "멋진 수영장", name:"멋진 수영장" },
-        {value: "농장", name:"농장" },
-        {value: "통나무집", name:"통나무집" }
-    ]
     const dispatch =useDispatch()
     const history =useHistory()
     const is_login = localStorage.getItem("is_login")? true : false;
-    // const user = useSelector((state) => state.user);
-    // console.log(user)
   
     React.useEffect(()=>{
       if(!is_login){
@@ -49,7 +39,29 @@ const Write =()=>{
     const [address, setAddress] = useState("")
     const [introduce, setIntroduce] = useState("")
     const [price, setPrice] = useState("")
+    const [category, setCategory] = useState("")
 
+    //이미지 formdata 변형 방법!
+    //formdata로 이미지를 보낸다음에 변환해준 url을 받아서 다시 데이터로 넣어주기!!!!(리로딩 할 필요가 없응께)
+    const onChange=(e)=>{
+      const img1 =e.target.files[0];
+      const img2 =e.target.files[1];
+      const img3 =e.target.files[2];
+      const img4 =e.target.files[3];
+      const img5 =e.target.files[4];
+      
+      const formData = new FormData();
+      formData.append('image', img1)
+      formData.append('image', img2)
+      formData.append('image', img3)
+      formData.append('image', img4)
+      formData.append('image', img5)
+
+      dispatch(postActions.upLoadDB(formData))
+    }
+
+    //리덕스에 저장된 url데이터 (파일 선택하면 비동기로 저장되서 넘어옴)
+    const image_url = useSelector((state)=>state.post.imgurl)
 
     return (
         <React.Fragment>
@@ -60,24 +72,41 @@ const Write =()=>{
                     </Back>
                     <Wrap2>
                         <Label>숙소 이름 정하기</Label>
-                        <Input placeholder="세상에서 제일 아름다운 숙소"/>
-                        <Label>호스팅할 숙소 유형을 알려주세요</Label>
-                        <Input placeholder="category"/>
+                        <Input placeholder="세상에서 제일 아름다운 숙소" onChange={(e)=>setHome(e.target.value)}/>
+
                         <Label>호스팅할 숙소의 위치는 어디인가요</Label>
-                        <Input placeholder="address"/>
-                        <Label>숙소의 사진을 올릴 차례입니다 (최소 5장) </Label>
+                        <Input placeholder="address" onChange={(e)=>setAddress(e.target.value)}/>
+
+                        <Label>숙소의 사진을 올릴 차례입니다 (최대 5장) </Label>
                         <input type="file" multiple="multiple" 
-                        style={{border:"1px solid", padding:"16px", width:"80%",margin: "0px auto 30px auto",borderRadius: "6px"}}/>
+                        style={{border:"1px solid", padding:"16px", width:"80%",margin: "0px auto 30px auto",borderRadius: "6px"}}
+                        name={"image"}
+                        onChange={onChange}
+                        />
+                        
                         <Label>숙소에 대해 자세히 설명해주세요</Label>
-                        <Input placeholder="introduce"/>
+                        <Input placeholder="introduce" onChange={(e)=>setIntroduce(e.target.value)}/>
+
                         <Label>숙소의 가격은 얼마인가요 (1박 기준)</Label>
                         <input style={{border: "1px solid",padding: "16px",width: "80%",margin: "0px auto 30px auto", borderRadius:"6px"}}
-                        type="text" value={num} onChange={(e)=>setNum(inputPriceFormat(e.target.value))}/>
+                        type="text" value={num} onChange={(e)=>setNum(inputPriceFormat(e.target.value), setPrice(e.target.value))}/>
+                        {/* <input onChange={(e)=>setPrice(e.target.value)}></input> */}
+
+
                         <div style={{display:"flex", justifyContent:"center", alignContent:"center", alignItems:"center", margin:"0px auto 40px auto"}}>
                             <p style={{fontSize:"15px", fontWeight:"600"}}>호스팅할 숙소의 최대 특징은 무엇인가요</p>
-                            <SelectBox option={Options}/>
+                            {/*드롭다운부분 select태그에는 onchange사용가능*/}
+                            <div>
+                              <Select onChange={(e)=>setCategory(e.target.value)}>
+                                <option value={"초소형 주택"}>초소형 주택</option>
+                                <option value={"해변근처"}>해변근처</option>
+                                <option value={"멋진 수영장"}>멋진 수영장</option>
+                                <option value={"농장"}>농장</option>
+                                <option value={"통나무 집"}>통나무 집</option>
+                              </Select>
+                            </div>                            
                         </div>
-                        <Button onClick={()=>{dispatch(postActions.addPostDB())}}>숙소 호스팅 완료</Button>
+                        <Button onClick={()=>{dispatch(postActions.addPostDB(home, address, introduce, price,category,image_url))}}>숙소 호스팅 완료</Button>
                     </Wrap2>
                 </Wrap>
         </React.Fragment>
@@ -157,20 +186,6 @@ margin-top:5%;
     margin-top: 100px;
   }
 `
-export default Write;
-
-const SelectBox =(props)=>{
-    console.log(props)
-    return (
-        <Select>
-            {props.option.map((option) => (
-                <option value={option.value}>
-                    {option.name}
-                </option>
-            ))}
-        </Select>
-    )
-};
 
 const Select = styled.select`
 border: 1px solid ;
@@ -178,3 +193,5 @@ padding: 16px;
 border-radius: 6px;
 margin-left: 100px;
 `
+
+export default Write;

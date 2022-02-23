@@ -98,8 +98,6 @@ const dubCheckIdFB =(id)=>{
         {user_id: id})
         .then((response)=>{
             console.log(response)
-            console.log(response.data.success)
-            console.log(response.data.fail)
             window.alert(response.data.msg)
         }).catch((error)=>{
             console.log(error)
