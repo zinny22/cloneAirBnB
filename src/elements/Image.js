@@ -83,7 +83,7 @@ const ImageSquare = styled.div`
     width: var(--size);
     height: var(--size);
     position: relative;
-    padding-top: 100%;
+    padding-top: 93%;
     @media screen and (max-width: 743px) { padding-top: 75% } 
     @media screen and (max-width: 743px) { border-radius: 0px }
     overflow: hidden;

@@ -50,7 +50,6 @@ Grid.defaultProps = {
     center: false,
     _font: false,
     _onClick: () => {},
-    height: null,
     is_detail : null,
 }
 
@@ -66,7 +65,8 @@ const GridBox = styled.div`
     ${(props) => props.center? 'text-align: center': ""};
     ${(props) => props._font? `font-family : Yfont;` : ""}
     ${(props) => props.is_detail? `
-    @media screen and (max-width: 743px) { padding : 3% }
+    @media screen and (max-width: 1127px) { padding : 0px 40px 0px 40px }
+    @media screen and (max-width: 743px) { padding : 0px }
     ` : ""}
 `
 

@@ -133,7 +133,6 @@ const Wrap = styled.div`
 `
 const Right = styled.div`
     padding-left: 13px;
-    padding-right: 13px;
 `
 const RightMonth = styled.div`
     display: flex;
@@ -144,7 +143,6 @@ const RightCalendar = styled.div`
 `
 const Left = styled.div`
     padding-right: 13px;
-    padding-left: 13px;
 `
 const LeftMonth = styled.div`
     display: flex;
@@ -185,6 +183,7 @@ const LeftArrow = styled.button`
 const Day = styled.table`
     border-collapse: separate;
     border-spacing: 1.5rem 1.5rem;
+    cursor: pointer;
 `
 
 export default Calendar;

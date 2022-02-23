@@ -1,9 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import person from "../person.png"
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from '../redux/modules/user';
+import { actionCreators as postActions } from '../redux/modules/post';
+import CommentList from "./CommentList";
+import CommentWrite from "./CommentWrite";
+import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 
-const ReviewModal = ({setIsReview}) => {
-  return(
+
+const ReviewModal = ({ setIsReview, home_id}, ) => {
+    const dispatch = useDispatch()
+    // const id = props.match.params.home_id;
+    // console.log(home_id)
+    const comment = useSelector((store) => store.post.comment);
+    console.log(<CommentWrite/>)
+
+
+    React.useEffect(() => {
+       
+        dispatch(postActions.getCommentDB(home_id))
+        return;
+      }, []);
+
+    return(
      <React.Fragment>
          <Black onClick={()=>setIsReview(false)}/>
          <Wrap>
@@ -15,37 +35,10 @@ const ReviewModal = ({setIsReview}) => {
             <div style={{position:"sticky", top:"0", backgroundColor:"white"}}>
                 <Text> ⭐️ 4.92. 후기150개 </Text>
                 <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", position:"relative"}}>
-                <Input></Input>
-                <Button>작성</Button>
                 </div>
+                { comment ? <CommentWrite home_id = {home_id}/> : ""}
             </div>
-            <div>
-            <div style={{display:"flex", alignItems:"center", marginTop:"20px"}}>
-                <img src={person} alt="user_image" style={{width:"50px", height:"50px", margin:"0px 20px 0px 0px"}}/>
-                <div>
-                    <p style={{fontSize:"16px", fontWeight:"600", color:"rgb(34,34,34)"}}>hyejin<br/><span style={{fontSize:"10px"}}>17시간전</span></p>
-                </div>
-                <div style={{display:"flex", justifyContent:"space-between", marginLeft:"30px"}}>
-                    <Sbutton>수정</Sbutton>
-                    <Sbutton>삭제</Sbutton>
-                </div>
-            </div>
-            <p>여기 숙소 너무 좋아요~ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-            </div>
-            <div>
-            <div style={{display:"flex", alignItems:"center", marginTop:"20px"}}>
-                <img src={person} alt="user_image" style={{width:"50px", height:"50px", margin:"0px 20px 0px 0px"}}/>
-                <div>
-                    <p style={{fontSize:"16px", fontWeight:"600", color:"rgb(34,34,34)"}}>hyejin<br/><span style={{fontSize:"10px"}}>17시간전</span></p>
-                </div>
-                <div style={{display:"flex", justifyContent:"space-between", marginLeft:"30px"}}>
-                    <Sbutton>수정</Sbutton>
-                    <Sbutton>삭제</Sbutton>
-                </div>
-            </div>
-            <p>여기 숙소 너무 좋아요~ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-            </div>
-
+            <p><CommentList home_id = {home_id}/></p>
         </Wrap>
     </React.Fragment>
   )

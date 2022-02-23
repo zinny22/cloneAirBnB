@@ -162,7 +162,7 @@ const Category = styled.div`
   background: transparent;
   cursor: pointer;
   position: relative;
-  ${(props)=> props.idx === props.clickCategory ? `pointer-events: none;` : ""}
+  ${(props)=> props.idx === props.clickCategory ? `pointer-events: none;` : ""};
   &:hover {
     background: #F7F7F7;
   }

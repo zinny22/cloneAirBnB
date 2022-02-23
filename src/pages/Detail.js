@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
-import {Grid , Text, Image, Button} from "../elements"
+import {Grid , Text, Image} from "../elements"
 import Calendar from "../components/Calendar"
 import { useDispatch, useSelector } from "react-redux"
 import { actionCreators as postActions } from "../redux/modules/post"
@@ -17,24 +17,35 @@ const Detail = (props) => {
     const dispatch = useDispatch()
     let post_detail = useSelector((state) => state.post.detail)
     const [IsReview, setIsReview,] = useState(false)
-    const onSetIsReview =(active)=>{
-    setIsReview(active)
+    const onSetIsReview =(e)=>{
+    setIsReview(e)
     }
 
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    
     React.useEffect(()=>{
-
         dispatch(postActions.getPostDetailDB(id))
+        window.addEventListener('scroll', updateScroll);
+  
         return () => {
+          window.removeEventListener("scroll", updateScroll);
         };
-    },[]);
+      },[]);
+
 
     return (
         <React.Fragment>
             <Header/>
+        <Grid is_detail is_flex padding = "24px 80px 0px 80px">
         <HomeName>
             <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-label="자동 번역된 이름: 산슨 테라스 &quot;작은 전원주택&quot;" role="img" focusable="false" style={{padding : "6px", display: "block", height: "24px", width: "24px", fill: "currentcolor"}}><path d="M9 0a1 1 0 0 1 .993.883L10 1v5h5a1 1 0 0 1 .993.883L16 7v8a1 1 0 0 1-.883.993L15 16H7a1 1 0 0 1-.993-.883L6 15v-5H1a1 1 0 0 1-.993-.883L0 9V1A1 1 0 0 1 .883.007L1 0h8zm1.729 7l-1.393.495.233.217.13.132c.125.127.227.245.308.352l.073.103.048.073.045.077H7.308v1.309h1.207l.166.52.09.266.112.29a6.294 6.294 0 0 0 1.109 1.789c-.495.315-1.119.607-1.87.87l-.331.112-.346.108-.445.134L7.72 15l.407-.125.386-.128c1.007-.349 1.836-.752 2.486-1.214.57.405 1.277.764 2.12 1.08l.369.134.386.128.406.125.72-1.153-.445-.134-.26-.08-.345-.115c-.783-.27-1.43-.57-1.94-.895a6.3 6.3 0 0 0 1.068-1.694l.128-.32.114-.33.165-.521h1.208V8.449H11.64l-.093-.231a3.696 3.696 0 0 0-.554-.917l-.126-.149-.14-.152zm1.35 2.758l-.042.133-.076.224-.103.264A4.985 4.985 0 0 1 11 11.76a4.952 4.952 0 0 1-.743-1.127l-.115-.254-.103-.264-.076-.224-.042-.133h2.158zM9 1H1v8h5V7c0-.057.005-.113.014-.167H3.827L3.425 8H2l2.257-6h1.486l1.504 4H9V1zM5 3.411L4.253 5.6h1.502L5 3.411z"></path></svg>
-            <div style={{fontSize: "26px"}}>&nbsp;{post_detail ? post_detail.homes.home_name : ""}</div>
+            <div style={{fontSize: "26px",}}>&nbsp;{post_detail ? post_detail.homes.home_name : ""}</div>
         </HomeName>
+        </Grid>
+        <Grid is_detail is_flex padding = "6px 80px 24px 80px">
         <TopRate>
             <div style={{display: "flex"}}>
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "14px", width: "14px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
@@ -54,19 +65,22 @@ const Detail = (props) => {
             </div>
             <Share>[공유하기][❤저장]</Share>
         </TopRate>
-        <Grid is_detail is_flex padding = "16px 15% 0px 15%">
+        </Grid>
+        <Grid is_detail is_flex padding = "0px 80px 0px 80px">
+            <ImageBox>
                 <BigImage>
-                    <Image  src={post_detail ? post_detail.homes.image_url[0] : ""} border_radius ="10px 0px 0px 10px / 10px 0px 0px 10px" shape = "square" />
+                    <Image  src={post_detail ? post_detail.homes.image_url[0] : ""} border_radius ="13px 0px 0px 13px / 13px 0px 0px 13px" shape = "square" />
                 </BigImage>
                 <SmallImage>
                     <Image  src={post_detail ? post_detail.homes.image_url[1] : ""}shape = "square" />
-                    <Image  src={post_detail ? post_detail.homes.image_url[2] : ""}border_radius ="0px 10px 0px 0px / 0px 10px 0px 0px" shape = "square" />
+                    <Image  src={post_detail ? post_detail.homes.image_url[2] : ""}border_radius ="0px 13px 0px 0px / 0px 13px 0px 0px" shape = "square" />
                     <Image  src={post_detail ? post_detail.homes.image_url[3] : ""}shape = "square" />
-                    <Image  src={post_detail ? post_detail.homes.image_url[4] : ""}border_radius ="0px 0px 10px 0px / 0px 0px 10px 0px" shape = "square" />
+                    <Image  src={post_detail ? post_detail.homes.image_url[4] : ""}border_radius ="0px 0px 13px 0px / 0px 0px 13px 0px" shape = "square" />
                 </SmallImage>
+            </ImageBox>
         </Grid>
-        
-        <Grid is_detail is_flex padding = "0px 15% 0px 15%">
+        <Grid is_detail is_flex padding = "0px 80px 0px 80px">
+        <AllGrid>
         <LeftGrid>
             <div style={{margin : "0px", padding: "24px 0px 24px 0px", display: "flex" ,justifyContent: "space-between"}}>
             <text style = {{fontWeight:"bold", fontSize:"22px"}}>
@@ -203,24 +217,33 @@ const Detail = (props) => {
             체크인 날짜를 선택해주세요.  
         </Text>
         <span style={{padding : "8px 0px 0px 0px", fontSize: "14px", fontWeight: "400"}}>
-            최대인원 N명 침실 N개 욕실 N개 
         </span> 
         </Grid>
         <Calendar/>
         </LeftGrid>
         <RightGrid>
-        <MoveCard>하이루</MoveCard>
+            <MoveWrap className={ scrollPosition > 700 ? "change_wrap" : ""}>
+                {/* <MoveCardWrap> */}
+                    <MoveCard>
+                            하이루
+                    </MoveCard>
+                {/* </MoveCardWrap> */}
+                <MoveText>
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding: "4px 8px", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M28 6H17V4a2 2 0 0 0-2-2H3v28h2V18h10v2a2 2 0 0 0 2 2h11l.115-.006a1 1 0 0 0 .847-1.269L27.039 14l1.923-6.724A1 1 0 0 0 28 6z"></path></svg>
+                    숙소 신고하기
+                </MoveText>
+            </MoveWrap>
         </RightGrid>
+        </AllGrid>
         </Grid>
-        <Grid is_detail padding = "0px 15% 0px 15%">
         <Grid>
-        <Hr/>
-        </Grid>
         {/* 후기 페이지 */}
-        <Grid padding = "48px 0px 48px 0px">
+        <Grid is_detail is_flex padding = "0px 80px 0px 80px">
+        <BigHoogi>
+        <Hr/>
             <Icon>
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "8px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>  
-                <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "56px 8px 8px 8px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>  
+                <Text is_flex padding = "48px 0px 32px 0px" margin = "0px" bold size = "22px">
                 {post_detail ? post_detail.homes.rateAvg : ""} 후기 {post_detail ? post_detail.homes.comment_count : ""}개
                 </Text>
             </Icon>
@@ -228,25 +251,27 @@ const Detail = (props) => {
             onClick={()=>{onSetIsReview(true);}}>
             후기 {post_detail ? post_detail.homes.comment_count : ""}개 모두 보기
             </Facilities>
-            {IsReview &&<ReviewModal setIsReview={setIsReview}/>}
+            {IsReview &&<ReviewModal home_id = {id} setIsReview={setIsReview}/>}
+        </BigHoogi>
+        
         </Grid>
-        <Grid padding = "0px 0px 0px 0px">
-        <Hr/>
+        <Grid is_detail is_flex padding = "48px 80px 32px 80px">
+            <Map>
+            <Grid padding = "0px 0px 48px 0px">
+            <Hr/>
+            </Grid>
+                <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
+                    호스팅 지역
+                </Text>
+                    여긴 지도입니다
+            </Map>
         </Grid>
-        <Grid padding = "48px 0px 48px 0px">
-            <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
-                호스팅 지역
-            </Text>
-                여긴 지도입니다
-        </Grid>
-        <Grid padding = "0px 0px 0px 0px">
-        <Hr/>
-        </Grid>
-        <Grid padding = "48px 0px 48px 0px">
-
 
         {/* 호스트 소개  */}
+        <Grid is_detail is_flex padding = "0px 80px 0px 80px">
         <Host>
+        <Hr/>
+        <HostInfo>
             <Image margin = "0px 24px 0px 0px" size = "64px"/>
                 <Text margin = "0px" bold size = "22px">
                             호스트: {post_detail ? post_detail.homes.host_name : ""}님<br style={{padding:"0px"}}/>
@@ -254,7 +279,7 @@ const Detail = (props) => {
                             회원 가입일: 2012년11월
                         </span>
                 </Text>
-        </Host>
+        </HostInfo>
             <Hoogi>
                 <Icon2>
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
@@ -269,6 +294,47 @@ const Detail = (props) => {
                     &nbsp;슈퍼 호스트
                 </Icon2>
             </Hoogi>
+                <HostInt>
+                    こんにちは｡ Sanson Terraceの岩下大悟と申します｡長野県の佐久穂町という小さな山あいの村に､妻と娘とﾈｺの寅吉と一緒に暮らしています｡ 出身は隣りの佐久市というところですが､地元の友人たちと小さな小屋を建て始めたことをきっかけに､ 空間づくりや暮らし､自分たちにとっての山村文化に向き合うようになりました｡ また､ﾌｨﾝﾗﾝﾄﾞに滞在した際には､… 더 읽기
+                    <br/>
+                    <br/>
+                    <text style={{fontWeight: "bold"}}>공동 호스트</text>
+                </HostInt>
+                    <div style={{display:"flex"}}>
+                        <Image margin = "5px"size = "40px" src="https://a0.muscache.com/im/pictures/user/264f90cc-ed59-4832-b5dc-2c1c84f62959.jpg?im_w=240"/>
+                        <text style={{padding : "11px"}}>Akane</text>
+                        <Image margin = "5px"size = "40px" src="https://a0.muscache.com/im/pictures/user/9a97e518-aa39-471f-a5f0-613e166f4bbb.jpg?im_w=240"/>
+                        <text style={{padding : "11px"}}>Haruka</text>
+                    </div>
+                    <div style={{margin : "10px 0px 10px 0px", width : "473px"}}>
+                    <text style={{fontWeight : "bold"}}>
+                        숙박 중 게스트와의 교류
+                    </text>     
+                    <br/>
+                    <div style={{margin : "10px 0px 10px 0px"}}>
+                    <text>
+                        일본 시골 생활을 즐겨보자!
+                        여러분의 의견에 따라 교환하거나 소통하겠습니다.
+                        멀리 1km 정도 떨어진 전원주택 근처의 오래된 일본식 집에서 살고 있습니다. 도움이 필요하시면 언제든지 알려주세요.
+                    </text>
+                    </div>
+                    </div>
+                    <br/>
+                    <div style={{margin : "10px 0px 10px 0px", width : "473px"}}>
+                    <text style={{fontWeight : "bold"}}>
+                        {post_detail ? post_detail.homes.host_name : ""}님은 슈퍼 호스트입니다.
+                    </text>     
+                    <br/>
+                    <div style={{margin : "10px 0px 10px 0px"}}>
+                    <text>
+                        슈퍼호스트는 풍부한 경험과 높은 평점을 자랑하며 게스트가 숙소에서 편안히 머무를 수 있도록 최선을 다하는 호스트입니다.
+                    </text>
+                    </div>
+                    </div>
+                    <div style={{margin : "48px 0px 48px 0px"}}>
+                        <Hr/>
+                    </div>
+            </Host>
         </Grid>
         </Grid>
         </React.Fragment>
@@ -279,8 +345,13 @@ const HomeName = styled.div`
     font-weight: 600;
     font-size : 14px;
     display: flex;
-    padding : 24px 15% 8px 15%;
-    @media screen and (max-width: 743px) { padding : 3% };
+    width: 100%;
+    margin : auto;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { margin : 1% 0% 1% 0% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+    @media screen and (max-width: 743px) { padding : 3% 1% 0% 1% };
 `
 const UserImage = styled.div`
     width : 56px;
@@ -295,8 +366,13 @@ const TopRate = styled.div`
     font-size : 14px;
     display: flex;
     justify-content: space-between;
-    padding : 0px 15% 0px 15%;
-    @media screen and (max-width: 743px) { padding : 3% };
+    width: 100%;
+    margin : auto;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { margin : 0% 0% 2% 0% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+    @media screen and (max-width: 743px) { padding : 3% 1% 1% 1% };
 `
 
 const Share = styled.div`
@@ -316,9 +392,21 @@ const Facilities = styled.button`
     @media screen and (max-width: 743px) { width : 100% };
 `
 
+const ImageBox = styled.div`
+    width: 100%;
+    margin: auto;
+    display: flex;
+    @media screen and (max-width: 743px) { padding: 0px } 
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1121px }
+    
+`
+
 const BigImage = styled.div`
     width : 100%;
-    padding : 0.7% 0.8% 0% 0%;
+    padding : 0% 0.8% 0% 0%;
+    @media screen and (max-width: 743px) { padding: 0px } 
+    
 `
 const SmallImage = styled.div`
     width : 100%;
@@ -329,10 +417,21 @@ const SmallImage = styled.div`
     column-gap: 1.5%;
     @media screen and (max-width: 743px) { display: none } 
 `
+
+const AllGrid = styled.div`
+    display : flex;
+    width: 100%;
+    margin : auto;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+`
+
 const LeftGrid = styled.div`
     width: 60%;
     padding-bottom: 48px;
     margin-top : 2%;
+    /* @media screen and (max-width: 1296px) { width : 60% } */
     @media screen and (max-width: 743px) { width : 100% };
 `
 const TextBox = styled.div`
@@ -342,14 +441,65 @@ const TextBox = styled.div`
 `
 const RightGrid = styled.div`
     width: 40%;
+    @media screen and (max-width: 743px) { display: none } 
 `
-const MoveCard = styled.div`
-    position:fixed; 
-    width:175px; 
+const MoveWrap = styled.div`
+    position: absolute;
+    top: 73%;
+    left: 60%;
     display:inline-block; 
-    right:400px; /* 창에서 오른쪽 길이 */ 
-    top:94%; /* 창에서 위에서 부터의 높이 */
-    background-color: transparent; margin:0; 
+    background-color: transparent; margin:0;
+    height: 614px;
+    &.change_wrap 
+    {
+    position: sticky;
+    top: 0%;
+    left: 60%;
+    padding-top: 48px;
+    @media screen and (max-width: 1296px) { padding: 48px }
+    @media screen and (max-width: 1296px) { width: 92% }
+    z-index: 50;
+    }
+    margin : 48px 0px 94px 0px;
+    width:370px; 
+    height:422px;
+    @media screen and (max-width: 1296px) { padding: 48px }
+    @media screen and (max-width: 1296px) { width: 31% }
+
+
+
+
+
+`
+// const MoveCardWrap = styled.div`
+//     margin : 48px 0px 94px 0px;
+//     width:370px; 
+//     height:422px;
+
+// `
+const MoveText = styled.div`
+    display: flex;
+    justify-content: center;
+    margin : 24px 0px 0px 24px;
+    font-size: 14px;
+    color : #717171;
+    font-weight: 600;
+    width: 322px;
+    @media screen and (max-width: 1296px) { width : 84% }
+
+`
+
+const MoveCard = styled.div`
+    box-shadow: 0px 2px 12px 1px #cccccc;
+    padding: 24px;
+    border: 1px solid #dddddd ;
+    border-radius: 10px;
+    background-color: white;
+    width: 322px;
+    height:422px;
+    @media screen and (max-width: 1296px) { width : 84% }
+
+
 `
 const Hr = styled.hr`
     background-color: #dddddd;
@@ -368,6 +518,22 @@ const DetailText = styled.div`
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 `
+const BigHoogi = styled.div`
+    margin : auto;
+    width: 100%;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+`
+
+const Map = styled.div`
+    margin : auto;
+    width: 100%;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+`
+
 
 const Icon = styled.div`
     display: flex;
@@ -379,12 +545,30 @@ const Icon2 = styled.div`
 `
 
 const Host = styled.div`
+    margin : auto;
+    display: grid;
+    @media screen and (max-width: 743px) { margin : 3% 0% 3% 3% }
+    @media screen and (max-width: 1296px) { width : 100% }
+    @media screen and (min-width: 1296px) { width : 1118px }
+`
+
+const HostInfo = styled.div`
     display: flex;
-    margin: 0px 0px 24px 0px;
+    margin: 48px 0px 24px 0px;  
 `
 
 const Hoogi = styled.div`
     display: flex;
+`
+
+const HostInt = styled.div`
+    margin-top: 24px;
+    margin-bottom: 10px;
+    width : 473px;
+`
+
+const Policy = styled.div`
+    width : 70%;
 `
 
 
