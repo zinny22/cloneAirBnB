@@ -52,10 +52,10 @@ const Markercontent = styled.div`
     &:nth-child(18) {top: -32%; left: -8%;}
     &:nth-child(19) {top: -37%; left: 7%;}
     &:nth-child(20) {top: 8%; left: 1%;}
-    &:nth-child(20) {top: -15%; left: 1%;}
-    &:nth-child(20) {top: -32%; left: 4%;}
-    &:nth-child(20) {top: -48%; left: -7%;}
-    &:nth-child(20) {top: -8%; left: -1%;}
+    &:nth-child(21) {top: -15%; left: 1%;}
+    &:nth-child(22) {top: -32%; left: 4%;}
+    &:nth-child(23) {top: -48%; left: -7%;}
+    &:nth-child(24) {top: -8%; left: -1%;}
 `
 
 const PriceMarker = styled.div`
