@@ -9,28 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import ReviewModal from "../components/ReviewModal";
-import IntroduceModal from "../components/IntroduceModal";
-
+import CommentList from "../components/CommentList";
 
 const Detail = (props) => {
     const id = props.match.params.home_id;
     const dispatch = useDispatch()
-    // let comment_id = useSelector((state) => state.post.comment)
-    // console.log(comment_id)
-    // const _comment_id = () => {
-    //     return(
-    //         <React.Fragment>
-    //         {comment_id.map((c, idx )=> {
-    //             return (
-    //                 <div key={idx} {...c}>
-                        
-    //                 </div>
-    //             )
-    //         })}
-    //         </React.Fragment>
-    //     )
-    // }
-    // console.log(_comment_id)
+    const comment = useSelector((store) => store.post.comment);
+    
     let post_detail = useSelector((state) => state.post.detail)
     const [IsReview, setIsReview,] = useState(false)
     const onSetIsReview =(e)=>{
@@ -54,6 +39,8 @@ const Detail = (props) => {
 
 
     return (
+
+        
         <React.Fragment>
             <Header/>
         <Grid is_detail is_flex padding = "24px 80px 0px 80px">
@@ -264,6 +251,9 @@ const Detail = (props) => {
                 {post_detail ? post_detail.homes.rateAvg : ""} 후기 {post_detail ? post_detail.homes.comment_count : ""}개
                 </Text>
             </Icon>
+            <CommentBox>
+            
+            </CommentBox>
             <Facilities 
             onClick={()=>{onSetIsReview(true);}}>
             후기 {post_detail ? post_detail.homes.comment_count : ""}개 모두 보기
@@ -586,6 +576,14 @@ const HostInt = styled.div`
 
 const Policy = styled.div`
     width : 70%;
+`
+
+const CommentBox =styled.div`
+    display: flex;
+    flex-direction: column;
+    clear: both;
+    overflow: hidden;
+    /* grid-template-columns: 1fr 1fr; */
 `
 
 

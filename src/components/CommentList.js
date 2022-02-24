@@ -72,7 +72,7 @@ const CommentList = ({home_id}, props) => {
               {/* <Text margin="0px">{transformDate(updatedAt)}</Text> */}
             </Grid>
             <Grid is_flex width="10rem" height="1.5rem">
-              <Button
+              {/* <Button
                 margin="1px"
                 border_radius="1rem"
                 _onClick={() => {
@@ -80,8 +80,8 @@ const CommentList = ({home_id}, props) => {
                 }}
             >
             수정
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
             margin="1px"
             border_radius="1rem"
             _onClick={() => {
@@ -89,7 +89,7 @@ const CommentList = ({home_id}, props) => {
             }}
             >
             삭제
-            </Button>
+            </Button> */}
             </Grid>
           </Grid>
           <Comment>
