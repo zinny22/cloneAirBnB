@@ -245,19 +245,19 @@ const dropdownRef = useRef(null);
             <li>
               <a onClick={()=>{onSetIsSignup(true); onSetIsVisible(false)}}>회원가입</a>
             </li>
-            <li>
+            {/* <li>
               <a onClick={()=>{onSetIsFilter(true);  onSetIsVisible(false)}}>필터모달</a>
             </li>
             <li>
               <a onClick={()=>{onSetIsReview(true);  onSetIsVisible(false)}}>댓글모달</a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
       {IsM && <LoginModal setIsM={setIsM}/>}
       {IsSignup &&<SignModal setIsSignup={setIsSignup}/>}
-      {IsFilter &&<FilterModal setIsFilter={setIsFilter}/>}
-      {IsReview &&<ReviewModal setIsReview={setIsReview}/>}
+      {/* {IsFilter &&<FilterModal setIsFilter={setIsFilter}/>}
+      {IsReview &&<ReviewModal setIsReview={setIsReview}/>} */}
     </div>
   );
 }

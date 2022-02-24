@@ -29,7 +29,6 @@ const initialState = {
 }
 
 const addPostDB = (home, address, introduce, price,category,image_url)=>{
-  // console.log(home, address, introduce, price,category,image_url)
   return function(dispatch, getState, { history }){
     const _postList ={
       home_name:home,
@@ -62,7 +61,6 @@ const addPostDB = (home, address, introduce, price,category,image_url)=>{
 
 
 const addCommentDB = (home_id, comment, user_nick)=>{
-  console.log(home_id, comment)
   return function(dispatch, getState, { history }){
     const _commentInfo = {
       comment : comment, 
@@ -101,6 +99,8 @@ const getCommentDB = (home_id)=>{
       })
       .catch((err) => {
         console.error(err)
+        window.alert("😁로그인 해주세요😁")
+        window.location.reload(`/detail/${home_id}`)
       })
   }
 }
@@ -158,7 +158,6 @@ const getPostDetailDB = (home_id) => {
 }
 
 const upLoadDB =(formData)=>{
-  console.log(formData)
   return function(dispatch, getState, {history}){
     axios
     .post('http://54.180.81.174:3000/api/imgs', formData, {            
@@ -179,12 +178,9 @@ export default handleActions(
     {
       [GET_POST]: (state, action) =>produce(state, (draft) => {
           draft.list = action.payload.postList
-          console.log(draft.list)
         }),
       [GET_POSTDETAIL]: (state, action) =>produce(state, (draft) => {
-        console.log(action.payload)
         draft.detail = action.payload.postDetail
-        console.log(draft.detail)
       }),
       [GET_COMMENT]: (state, action) =>produce(state, (draft) => {
         draft.comment = action.payload
@@ -196,10 +192,7 @@ export default handleActions(
         draft.imgurl = action.payload.imgurl
       }),
       [ADD_COMMENT]: (state, action) =>produce(state, (draft) => {
-        console.log(action.payload)
-        console.log("하이루룰루", action)
         draft.comment.push(action.payload.comment)
-        console.log(draft.comment)
       }),
     },
     initialState

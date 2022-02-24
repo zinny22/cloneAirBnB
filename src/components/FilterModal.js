@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import {Text} from "../elements"
 
-const FilterModal = ({setIsFilter}) => {
+const FilterModal = (props) => {
   return(
      <React.Fragment>
-         <Black onClick={()=>setIsFilter(false)}/>
+         <Black onClick={()=>props.setIsFilter(false)}/>
          <Wrap>
             <Header>
-                <div onClick={()=>setIsFilter(false)}>
+                <div onClick={()=>props.setIsFilter(false)}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", fill:" none", height: "16px", width: "16px", stroke: "#222222", strokeWidth: "3", overflow: "visible",cursor:"pointer"}}><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
                 </div>
                 <div>필터 추가하기</div>
@@ -276,11 +276,14 @@ const Wrap = styled.div`
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    z-index: 1011;
+    z-index: 10;
     overflow-x : hidden;
     overflow-y : scroll;
     padding-top: 0%;
     margin: auto;
+    div {
+        text-align: left !important
+    }
 `
 
 const Black= styled.div`
@@ -290,7 +293,7 @@ const Black= styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1010;
+    z-index: 9;
     background-color: rgba(0, 0, 0, 0.50);
 `
 

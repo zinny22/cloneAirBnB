@@ -36,8 +36,13 @@ const Main = ()=> {
     const [toggleMap, setToggleMap] = React.useState(false)
     const [isModal, setIsModal] = React.useState(false)
 
+      //필터모달
+    const [IsFilter, setIsFilter] = useState(false)
+    const onSetIsFilter =(active)=>{
+    setIsFilter(active)
+    }
 
-    console.log(post_list)
+
     return(
         <React.Fragment>
           <Header></Header>
@@ -57,11 +62,10 @@ const Main = ()=> {
             <FilterArea>
               <FilterBtn>언제든</FilterBtn>
               <FilterBtn>인원</FilterBtn>
-              <FilterBtn onClick={()=> setIsModal(true)}>필터
+              <FilterBtn onClick={()=> onSetIsFilter(true)}>필터</FilterBtn>
                 {
-                  isModal &&<FilterModal/>
+                  IsFilter && <FilterModal setIsFilter={setIsFilter}/>
                 }
-              </FilterBtn>
             </FilterArea>
           </Nav>
           {toggleMap === false ? (
@@ -155,7 +159,6 @@ const CategoryContent = styled.div`
 
 const FilterArea = styled.div`
   display: flex;
-  align-items: center;
   @media screen and (min-width: 0) and (max-width: 800px){
     justify-content: center;
     border-radius: 30px;

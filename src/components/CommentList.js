@@ -12,8 +12,7 @@ const CommentList = ({home_id}, props) => {
     const dispatch = useDispatch();
     const comment = useSelector((store) => store.post.comment);
     const user = useSelector((store) => store.user.user);
-    // const uploading = useSelector((store) => store.user.uploading);
-    // {comment ? comment.homes.home_name : ""}
+  
     React.useEffect(() => {
     
       dispatch(userActions.loginCheckDB());
@@ -24,9 +23,7 @@ const CommentList = ({home_id}, props) => {
       <React.Fragment>
         <Grid padding="2vh 0 0">
           {comment ? comment.map((c, idx) => {
-            // if (user.user_nick === c.user_nick)
               return <CommentItem key={idx} {...c} isMe />;
-            // else return <CommentItem key={idx} {...c} />;
           }) : ""}
         </Grid>
       </React.Fragment>
@@ -69,27 +66,8 @@ const CommentList = ({home_id}, props) => {
                 <Text bold>{user_nick}</Text>
             </Grid>
             <Grid is_flex margin="0px 4px">
-              {/* <Text margin="0px">{transformDate(updatedAt)}</Text> */}
             </Grid>
             <Grid is_flex width="10rem" height="1.5rem">
-              {/* <Button
-                margin="1px"
-                border_radius="1rem"
-                _onClick={() => {
-                  editComment();
-                }}
-            >
-            수정
-            </Button> */}
-            {/* <Button
-            margin="1px"
-            border_radius="1rem"
-            _onClick={() => {
-                delComment();
-            }}
-            >
-            삭제
-            </Button> */}
             </Grid>
           </Grid>
           <Comment>
@@ -113,7 +91,6 @@ const CommentList = ({home_id}, props) => {
                   border_radius="5px"
                   margin="0 2px"
                 >
-                  {/* <AiOutlineEnter size={20} /> */}
                 </Button>
               </Grid>
             </Grid>
@@ -131,7 +108,6 @@ const CommentList = ({home_id}, props) => {
           </Grid>
           <Grid is_flex margin="0px 4px">
             <Text margin="0px">{comment}</Text>
-            {/* <Text margin="0px">{transformDate(updatedAt)}</Text> */}
           </Grid>
         </Grid>
       );
@@ -147,17 +123,6 @@ const Button =styled.button`
     border: 1px solid rgb(235,235,235);
     background-color:rgb(235,235,235) ;
     padding:10px;
-    color: rgb(34,34,34);
-    font-size: 15px;
-    right: 2px;
-`
-const WButton =styled.button`
-    border-radius: 40px;
-    border: 1px solid rgb(235,235,235);
-    background-color: rgb(235,235,235);
-    margin-left : 10px;
-    padding: 10px;
-    width : 100px;
     color: rgb(34,34,34);
     font-size: 15px;
     right: 2px;

@@ -20,7 +20,6 @@ const SignModal = ({setIsSignup}) => {
     
 
     const signup =()=>{
-        // console.log(id,nick,pwd,confirmpwd)
 
         if (id === "" || nick === "" || pwd === "" || confirmpwd === "") {
             window.alert("입력창을 확인해주세요");

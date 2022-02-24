@@ -6,7 +6,6 @@ import Input from '../elements/Input';
 import { actionCreators as postActions } from '../redux/modules/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
-// import { AiOutlineEnter } from 'react-icons/ai';
 import styled from 'styled-components';
 
 
@@ -15,7 +14,6 @@ const CommentWrite = ({home_id}, props) => {
   const dispatch = useDispatch(null);
  
   const user_nick = useSelector((state) => state.user.user.user_nick);
-  // const is_token = localStorage.getItem('login-token') ? true : false;
 
   React.useEffect(() => {
     
@@ -25,7 +23,6 @@ const CommentWrite = ({home_id}, props) => {
 
   const _setComment = (e) => {
     setComment(e.target.value);
-    console.log(e.target.value)
   };
 
   const writeComment = (home_id, comment, user_nick) => {

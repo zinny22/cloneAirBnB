@@ -21,7 +21,6 @@ const DetailHeader = () => {
           }}>
           <Logo onClick={()=>{history.pushState('/')}}/>
         <div style={{ 
-            // width: "50%",
             position: "relative", 
             display: "flex",
             alignItems:"center",

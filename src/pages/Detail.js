@@ -536,16 +536,7 @@ const MoveWrap = styled.div`
     @media screen and (max-width: 1296px) { width: 31% }
 
 
-
-
-
 `
-// const MoveCardWrap = styled.div`
-//     margin : 48px 0px 94px 0px;
-//     width:370px; 
-//     height:422px;
-
-// `
 
 const MoveText = styled.div`
     display: flex;

@@ -26,26 +26,28 @@ const logInDB = (id, pwd)=>{
             user_pwd : pwd
         })
         .then((response)=>{
-            window.alert("로그인이 완료 되었습니다")
-            console.log(response)
-            localStorage.setItem("is_login", response.data.token)
-            dispatch(setUser({
+            if(response.data.result){
+                window.alert(response.data.msg)
+                localStorage.setItem("is_login", response.data.token)
+                dispatch(setUser({
                 is_login: response.data.token,
                 user_id:response.data.user.user_id,
                 user_nick:response.data.user.user_nick
-            }
-            ))
-        })
+                 }))
+        } else{
+            window.alert(response.data.msg)
+        }
+
+    })
         .catch((error)=>{
             console.log(error);
-            window.alert("아이디 비밀번호가 일치하지 않습니다")
+            window.alert(error.data.msg)
         })
     }
 }
 //회원가입 미들웨어 
 const signUpDB = (id,nick,pwd,confirmpwd) =>{
     return function(dispatch,getState, {history}){
-        console.log(id,nick,pwd,confirmpwd)
         axios.post('http://54.180.81.174:3000/api/signup',{
             user_id:id,
             user_nick:nick,
@@ -83,10 +85,9 @@ const loginCheckDB =()=>{
                 user_id:response.data.user.user_id,
                 user_nick:response.data.user.user_nick
             }))
-            // history.push('/')
         })
         .catch((error)=>{
-            window.alert(error)
+            console.log(error)
         })
     }
 }
@@ -101,7 +102,6 @@ const dubCheckIdFB =(id)=>{
             window.alert(response.data.msg)
         }).catch((error)=>{
             console.log(error)
-            // window.alert(error.data.fail)
         })
     }
 }
@@ -115,7 +115,6 @@ const dubCheckNickFB =(nick)=>{
             window.alert(response.data.msg)
         }).catch((error)=>{
             console.log(error)
-            // window.alert(error.data.fail)
         })
     }
 }
@@ -125,8 +124,6 @@ export default handleActions(
         [SET_USER]:(state, action) => produce(state, (draft)=>{
             draft.user = action.payload.user
             draft.is_login = true;
-            console.log(draft.is_login)
-            console.log(draft.user)
         }),
         [LOG_OUT]:(state, action) => produce (state,(draft)=>{
             localStorage.clear();

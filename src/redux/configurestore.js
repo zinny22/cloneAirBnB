@@ -5,10 +5,7 @@ import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
 import Post from "./modules/post";
-// // import Image from "./modules/image";
-// // import Star from "./modules/star";
 import Like from "./modules/like";
-// // import Comment from "./modules/comment"
 
 
 export const history = createBrowserHistory();
@@ -16,10 +13,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   user: User,
   post: Post,
-  // // image: Image,
-  // // star: Star,
   like: Like,
-  // // comment:Comment,
   router: connectRouter(history),
 });
 
@@ -44,5 +38,4 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 let store = (initialStore) => createStore(rootReducer, enhancer);
-// let store = (initialStore) => createStore(rootReducer);
 export default store();
