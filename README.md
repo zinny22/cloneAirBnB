@@ -25,8 +25,42 @@ https://github.com/Ryangsu/cloneAirBnB
  
 2.사용기술  📌
 ------------------
+FE
 - React
+
+<br/>
+BE
 - node.js
+- express
+- mongo db
+
+<br/>
+라이브러리
+- aws-sdk: S3 bucket 접근
+- cors: Request resource 제한
+- dotenv: 환경변수 설정
+- joi: 패턴 인증
+- JWT: 토큰 생성, 사용자 인증
+- mongoose: mongodb model schema
+- multer: 이미지 데이터 처리
+- multer-S3: 사진 파일 업로드
+- S3: AWS bucket
+
+<br/>
+
+3.배포
+------------------
+- EC2
+- AWS S3
+
+4.DB schema
+------------------
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/06040c21-1f12-4628-a5da-52d0c6b00742/Untitled.png)
+
+<br/>
+
+5.API
+------------------
 
 
 <br/>
@@ -37,8 +71,7 @@ https://github.com/Ryangsu/cloneAirBnB
 
 <br/>
 
-
-4.핵심기능🛠
+6.핵심기능🛠
 ------------------
 **메인 페이지**
 
@@ -79,7 +112,7 @@ https://github.com/Ryangsu/cloneAirBnB
 모든 페이지는 반응형
 <br/>
 
-5.트러블 슈팅 😮‍💨
+7.트러블 슈팅 😮‍💨
 ------------------
 **지도의 마커표기**
   
@@ -89,5 +122,5 @@ https://github.com/Ryangsu/cloneAirBnB
 <br/>
 
 
-5.개인회고 🤫
+8.개인회고 🤫
 ------------------
