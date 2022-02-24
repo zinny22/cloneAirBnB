@@ -67,7 +67,7 @@ BE
 
 3.실행화면 😄
 ------------------
-
+https://www.youtube.com/watch?v=cnWW2IPvHQQ
 
 <br/>
 
