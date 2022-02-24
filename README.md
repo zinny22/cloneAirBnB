@@ -1,70 +1,101 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clone AirBnB
+-----------------
+에어비엔비 클론코딩 하기!
+<br/>
+다양한 사람들의 맛집까지 공유 할 수 있는 시간!
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+1, 제작기간 & 팀원 소개 🫂
+------------------
+**- 2022년 02월 11일 ~ 2022년 02년 17일**
 
-### `yarn start`
+  - FE : 고주열, 이호빈, 장혜진 
+  - BE : 반장훈, 오세웅
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+📍BE 깃허브
+https://github.com/G-moog/cloneProject 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<br/>
+ 
+2.사용기술  📌
+------------------
+- React
+- node.js
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `yarn build`
+3.실행화면 😄
+------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+4.핵심기능🛠
+------------------
+**메인 페이지**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 다른 유저들이 작성한 상세 내용을 간단하게 보여줌
+- 로그인 하지 않아도 볼 수 있음 
+- 카드의 이미지를 누르면 상세 페이지로 이동
+- 내가 쓴 게시글만 수정 삭제 버튼이 보임 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**로그인 페이지**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 아이디 패스워드 입력 가능
+- 비회원인 경우 바로 회원가입 페이지로 갈 수 있는 버튼 있음 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**회원가입 페이지**
 
-## Learn More
+- 아이디 패스워드는 조건에 맞아야 함 (아이디는 이메일 형식 비밀번호는 대, 소문자와 특수문자(!@#*-_), 숫자를 포함한 8자~ 16자)
+- 아이디와 닉네임 중복 확인이 가능 
+- 입력한 패스워드 재확인 가능 
+- 회원가입이 완료되면 메인으로 이동
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**게시글 작성 페이지**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 로그인한 회원만 접근 가능 
+- 사진업로드시 미리보기 가능
+- 평점 주기 가능 (5점만점)
+- 게시글 작성 시간은 서버에서 자동 생성 
+- 글작성 버튼을 누르면 메인으로 이동 
 
-### Code Splitting
+**상세 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 게시글에 맞는 상세 정보 열람 가능 
+- 게시글에 맞는 댓글 정보(누가 언제 어떤 내용을 썼는지) 열람 가능
+- 댓글 달기 가능 
 
-### Analyzing the Bundle Size
+**수정 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 그 게시글의 기존 정보도 인풋 안에 보여짐 
+- 게시글 수정 버튼 누르면 메인으로 이동
 
-### Making a Progressive Web App
+**Header /Footer**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 로그인을 안한경우에는 로그인 회원가입 버튼 노출
+- 로그인을 하면 회원의 닉네임(00님 안녕하세요)과 글쓰기 로그아웃 버튼 노출
+- 로코클릭시 메인으로 이동
+- 푸터에는 조의이름과 구성원이 표시 되어있음 
 
-### Advanced Configuration
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5.트러블 슈팅 😮‍💨
+------------------
+**이미지의 url이 길어 DB저장이 힘듬**
+  
+  : 제한 용량을 늘려서 저장이 가능하게 수정 했지만 여전히 길다 
 
-### Deployment
+**새로고침시 데이터 날라가는 현상**
+ 
+ : 서버에서 가져온 데이터를 렌더링 될때마다 불러주는 방식으로 진행 (원래는 리듀서에서의 값만 가져왔음)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<br/>
+<br/>
 
-### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5.개인회고 🤫
+------------------

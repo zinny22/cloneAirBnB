@@ -9,14 +9,10 @@ import CommentWrite from "./CommentWrite";
 import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 
 
-const ReviewModal = ({ setIsReview, home_id}, ) => {
+const ReviewModal = ({ setIsReview, home_id}, props) => {
     const dispatch = useDispatch()
-    // const id = props.match.params.home_id;
-    // console.log(home_id)
     const comment = useSelector((store) => store.post.comment);
-    console.log(<CommentWrite/>)
-
-
+    
     React.useEffect(() => {
        
         dispatch(postActions.getCommentDB(home_id))

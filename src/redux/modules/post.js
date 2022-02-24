@@ -6,19 +6,22 @@ const GET_POST = "GET_POST"
 const GET_POSTDETAIL = "GET_POSTDETAIL"
 const ADD_POST ="ADD_POST"
 const ADD_IMAGE ="ADD_IMAGE"
+
 // 코멘트
 const ADD_COMMENT = "ADD_COMMENT"
 const GET_COMMENT = "GET_COMMENT"
+const DEL_COMMENT = "DEL_COMMENT"
 
 const getPost = createAction(GET_POST, (postList) => ({postList}))
 //postDetail 은 내가 원하는 명으로 저장 
 const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}))
 const addPost = createAction(ADD_POST, (post)=>({post}))
 const getComment = createAction(GET_COMMENT, (comment_list)=>(comment_list))
-const addComment = createAction(ADD_COMMENT, (comment)=>(comment))
 
 const addImage = createAction(ADD_IMAGE, (imgurl)=>({imgurl}))
 
+const addComment = createAction(ADD_COMMENT, (comment, user_nick)=>({comment, user_nick}))
+const delComment = createAction(DEL_COMMENT, (comment, home_name) => ({comment, home_name}))
 
 const initialState = {
     list: [],
@@ -30,19 +33,19 @@ const addPostDB = (home, address, introduce, price,category,image_url)=>{
   return function(dispatch, getState, { history }){
     const _postList ={
       home_name:home,
-      category:address,
-      address:introduce,
+      category:category,
+      address:address,
       image_url:image_url,
-      introduce:category,
+      introduce:introduce,
       price:price
     }
     let postList ={..._postList}
     axios.post('http://54.180.81.174:3000/api/hosting',
       { home_name:home,
-        category:address,
-        address:introduce,
+        category:category,
+        address:address,
         image_url:image_url,
-        introduce:category,
+        introduce:introduce,
         price:price},
         {headers: {
           Authorization: `Bearer ${localStorage.getItem("is_login")}`,
@@ -57,13 +60,15 @@ const addPostDB = (home, address, introduce, price,category,image_url)=>{
       .catch((error)=>{
         console.log(error)})}}
 
+
 const addCommentDB = (home_id, comment, user_nick)=>{
-  console.log(home_id, comment, user_nick)
+  console.log(home_id, comment)
   return function(dispatch, getState, { history }){
-    const commentInfo = {
+    const _commentInfo = {
+      comment : comment, 
       user_nick : user_nick,
-      comment : comment
     }
+    let commentInfo ={..._commentInfo}
 
     axios
       .post(`http://54.180.81.174:3000/api/comment/save/write/${home_id}`, {
@@ -74,7 +79,7 @@ const addCommentDB = (home_id, comment, user_nick)=>{
       },
       )
       .then((res) => {
-        dispatch(addComment(res.data))
+        dispatch(addComment(commentInfo))
         console.log(res)
       })
       .catch((err) => {
@@ -100,6 +105,24 @@ const getCommentDB = (home_id)=>{
   }
 }
 
+const delCommentDB = (home_id)=>{
+  return function(dispatch, getState, { history }){
+    axios
+      .delete(`http://54.180.81.174:3000/api/comment/${home_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("is_login")}`,
+        },
+      })
+      .then((res) => {
+        dispatch(getComment(res.data.comment_list))
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+}
+
+
 
 const getPostDB = (category) => {
     return function (dispatch, getState, { history }) {
@@ -121,7 +144,10 @@ const getPostDB = (category) => {
 const getPostDetailDB = (home_id) => {
   return function (dispatch, getState, { history }) {
       axios
-        .get(`http://54.180.81.174:3000/api/homes/${home_id}`)
+        .get(`http://54.180.81.174:3000/api/homes/${home_id}`, {            
+          headers: {
+          Authorization: `Bearer ${localStorage.getItem("is_login")}`,
+        },})
         .then((res) => {
           dispatch(getPostDetail(res.data))
         })
@@ -172,7 +198,7 @@ export default handleActions(
       [ADD_COMMENT]: (state, action) =>produce(state, (draft) => {
         console.log(action.payload)
         console.log("하이루룰루", action)
-        draft.comment.unshift(action.payload.comment)
+        draft.comment.push(action.payload.comment)
         console.log(draft.comment)
       }),
     },

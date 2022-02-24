@@ -14,9 +14,8 @@ const CommentWrite = ({home_id}, props) => {
   const [comment, setComment] = React.useState('');
   const dispatch = useDispatch(null);
  
-
-  const user = useSelector((state) => state.user);
-  const is_token = localStorage.getItem('login-token') ? true : false;
+  const user_nick = useSelector((state) => state.user.user.user_nick);
+  // const is_token = localStorage.getItem('login-token') ? true : false;
 
   React.useEffect(() => {
     
@@ -29,9 +28,8 @@ const CommentWrite = ({home_id}, props) => {
     console.log(e.target.value)
   };
 
-  const writeComment = (home_id, comment) => {
-    console.log("나야나", comment)
-    dispatch(postActions.addCommentDB(home_id, comment))
+  const writeComment = (home_id, comment, user_nick) => {
+    dispatch(postActions.addCommentDB(home_id, comment, user_nick))
     setComment('');
     };
     
@@ -50,7 +48,7 @@ const CommentWrite = ({home_id}, props) => {
           width="50px"
           margin="0px 2px"
           onClick={() => {
-            writeComment(home_id, comment);
+            writeComment(home_id, comment, user_nick);
           }}
           border_radius="5px"
         >
