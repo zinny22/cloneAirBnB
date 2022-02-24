@@ -10,6 +10,7 @@ import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import ReviewModal from "../components/ReviewModal";
 import CommentList from "../components/CommentList";
+import DetailMap from "../components/DetailMap";
 
 const Detail = (props) => {
     const id = props.match.params.home_id;
@@ -54,7 +55,6 @@ const Detail = (props) => {
             <div style={{display: "flex"}}>
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "14px", width: "14px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
             {post_detail ? post_detail.homes.rateAvg : ""}
-            {/* 여기 onClick 페이지 이동 -> 후기로  */}
             &nbsp;·&nbsp;후기
             {post_detail ? post_detail.homes.comment_count : ""}개
             &nbsp;·&nbsp;
@@ -229,8 +229,64 @@ const Detail = (props) => {
             <MoveWrap className={ scrollPosition > 700 ? "change_wrap" : ""}>
                 {/* <MoveCardWrap> */}
                     <MoveCard>
-                            하이루
+                        <div style={{display: "flex"}}>
+                            <span style={{fontSize: "22px", fontWeight: "500"}}>
+                                ￦227,434
+                            <span style={{fontSize: "16px", fontWeight: "500"}}> 
+                                / 박
+                        </span>
+                        </span>
+                            <div style={{display: "flex", fontSize: "14px", fontWeight: "600", margin : "12px 0px 0px 72px"}}>
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding : "3px", color : "red", display: "block", height: "12px", width: "12px", fill: "currentcolor"}}><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fillRule="evenodd"></path></svg>
+                                {post_detail ? post_detail.homes.rateAvg : ""}
+                                &nbsp;·&nbsp;후기
+                                {post_detail ? post_detail.homes.comment_count : ""}개<br/>
+                            </div>
+                        </div>
+                        <MoveCardCheck>
+                            <div style={{display:"flex"}}>
+                            <CheckIn>
+                                <span style={{fontSize:"12px"}}>체크인</span><br/>
+                                <span style={{fontSize:"14px"}}>2022.03.14</span>
+                            </CheckIn>
+                            <CheckOut>
+                                <span style={{fontSize:"12px"}}>체크아웃</span><br/>
+                                <span style={{fontSize:"14px"}}>2022.03.14</span>
+                            </CheckOut>
+                            </div>
+                            <div>
+                            <Guest>
+                                <span style={{fontSize:"12px"}}>인원</span><br/>
+                                <span style={{fontSize:"14px"}}>게스트1명</span>
+                            </Guest>
+                            </div>
+                        
+                    </MoveCardCheck >
+                    <Cbutton onClick={()=>{window.alert("😢기능이 준비되지 않았어요😢")}}>
+                        예약하기
+                    </Cbutton>
+                    <span style={{width : "100%", textAlign : "center", fontSize: "14px", marginTop: "32px"}}>
+                        예약 확정 전에는 요금이 청구되지 않습니다.
+                    </span>
+                    <div style={{marginTop: "24px", width : "100%", fontSize: "16px"}}>
+                        <span style={{textDecoration: "underline"}}>￦227,434 X 7박</span>
+                        <span style={{float: "right"}}>￦1,592,038</span>
+                    </div>
+                    <div style={{width : "100%", fontSize: "16px"}}>
+                        <span style={{textDecoration: "underline"}}>서비스 수수료</span>
+                        <span style={{float: "right"}}>￦238,805</span>
+                    </div>
+                    <div style={{width : "100%", fontSize: "16px"}}>
+                        <span style={{textDecoration: "underline"}}>숙박세와 수수료</span>
+                        
+                        <span style={{float: "right"}}>￦23,880</span>
+                    </div>
+                    <Hr/>
+                    <div style={{width : "100%", fontSize: "16px", fontWeight: "600"}}>총 합계
+                    <span style={{float: "right"}}>￦1,854,723</span>
+                    </div>
                     </MoveCard>
+                    
                 {/* </MoveCardWrap> */}
                 <MoveText>
                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{padding: "4px 8px", display: "block", height: "16px", width: "16px", fill: "currentcolor"}}><path d="M28 6H17V4a2 2 0 0 0-2-2H3v28h2V18h10v2a2 2 0 0 0 2 2h11l.115-.006a1 1 0 0 0 .847-1.269L27.039 14l1.923-6.724A1 1 0 0 0 28 6z"></path></svg>
@@ -252,7 +308,7 @@ const Detail = (props) => {
                 </Text>
             </Icon>
             <CommentBox>
-            
+                <CommentList/>
             </CommentBox>
             <Facilities 
             onClick={()=>{onSetIsReview(true);}}>
@@ -270,7 +326,12 @@ const Detail = (props) => {
                 <Text is_flex padding = "0px 0px 32px 0px" margin = "0px" bold size = "22px">
                     호스팅 지역
                 </Text>
-                    여긴 지도입니다
+                <DetailMap/>
+                <div style={{margin:"24px 0px 0px 0px"}}>
+                <text style={{fontWeight: "500"}}>
+                {post_detail ? post_detail.homes.address : ""}
+                </text>
+                </div>
             </Map>
         </Grid>
 
@@ -497,6 +558,9 @@ const MoveText = styled.div`
 `
 
 const MoveCard = styled.div`
+    display : grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 12.5% 25% 12.5%;
     box-shadow: 0px 2px 12px 1px #cccccc;
     padding: 24px;
     border: 1px solid #dddddd ;
@@ -506,8 +570,50 @@ const MoveCard = styled.div`
     height:422px;
     @media screen and (max-width: 1296px) { width : 84% }
 
-
 `
+
+const MoveCardCheck = styled.div`
+    border : 1px solid #cccccc;
+    background-color: transparent;
+    border-radius: 10px;
+`
+
+const CheckIn = styled.td`
+    font-size: 12px;
+    padding : 2px 0px 0px 12px;
+    line-height: 0.6cm;
+    width: 50%;
+    height: 50px;
+    border-right: 1px solid #cccccc;
+    background-color: transparent;
+`
+const CheckOut = styled.div`
+    font-size: 12px;
+    padding : 2px 0px 0px 12px;
+    line-height: 0.6cm;
+    width: 50%;
+    height: 50px;
+    background-color: transparent;
+`
+const Guest = styled.div`
+    padding : 1px 0px 0px 12px;
+    line-height: 0.6cm;
+    border-top : 1px solid #cccccc;
+    background-color: transparent;
+`
+
+const Cbutton = styled.button`
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: rgb(227, 28, 95);
+    margin-top: 20px;
+`
+
 const Hr = styled.hr`
     background-color: #dddddd;
     height: 1px;
