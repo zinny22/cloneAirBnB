@@ -63,7 +63,9 @@ BE
 https://www.youtube.com/watch?v=cnWW2IPvHQQ
 
 <br/>
-
+최종 링크 :
+http://airjjapnb.com.s3-website.ap-northeast-2.amazonaws.com/
+<br/>
 
 5.핵심기능🛠
 ------------------
